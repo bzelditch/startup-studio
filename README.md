@@ -1,2 +1,2 @@
 # startup-studio
-A scouting platform for discovering athletes.
+A coaching marketplace.
