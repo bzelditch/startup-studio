@@ -4,7 +4,6 @@ import { Typography } from '@material-ui/core';
 
 export default props => (
   <Typography variant="h1">
-    Student Profile
-
+    Progress Tracker
   </Typography>
 );
