@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {
   Card,
   CardHeader,
@@ -12,19 +12,19 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { withStyles } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 
-const styles = {
+const styles = theme => ({
   card: {
-    marginLeft:10,
-    marginTop:10,
+    marginTop:theme.spacing.unit,
+    backgroundColor: theme.palette.grey[200],
   },
   img: {
     height: 100,
-    margin: 10,
+    margin: theme.spacing.unit,
   },
   avatar: {
     backgroundColor: red[500],
   },
-};
+});
 
 
 class CommentCard extends React.Component {
@@ -33,38 +33,42 @@ class CommentCard extends React.Component {
   }
 
   render() {
-    const {comment} = this.props
+    const {comment, classes} = this.props
     return (
-      <Card style={styles.card}>
+      <Card className={classes.card}>
         <CardHeader
           avatar={
-            <Avatar style={styles.avatar}>S</Avatar>
+            <Avatar className={classes.avatar}>G</Avatar>
           }
           action={(
             <IconButton>
               <MoreVertIcon />
             </IconButton>
           )}
-          title={comment.studentId}
-          subheader={comment.createTimestamp}
+          title={comment.coachId}
+          subheader={
+            <Fragment>
+              <Typography color="textSecondary">
+                {comment.createTimestamp}
+              </Typography>
+              <Typography color="textSecondary">
+                Timestamp: {comment.videoTimestamp} s
+              </Typography>
+            </Fragment>
+
+          }
         />
 
+
         <CardContent>
-          <Typography component="p">
-            Timestamp: {comment.videoTimestamp} seconds
-          </Typography>
-          <Typography component="p">
-            CommentId: {comment.commentId}
-          </Typography>
-          <br/>
-          <Typography component="p">
-            {comment.text}
-          </Typography>
+        <Typography component="p">
+          {comment.text}
+        </Typography>
         </CardContent>
 
         {comment.images.map((img) =>
           <CardMedia
-            style={styles.img}
+            className={classes.img}
             image={img}
           />
         )}
