@@ -57,9 +57,6 @@ class AnnotationForm extends Component {
     const {classes} = this.props;
     return (
       <Fragment>
-        <Typography variant="p">
-          Annotation Form
-        </Typography>
       <Typography variant="p">
         Timestamp: {videoTimestamp} seconds
       </Typography>

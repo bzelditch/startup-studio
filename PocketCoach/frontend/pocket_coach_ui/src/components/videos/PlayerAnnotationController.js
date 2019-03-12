@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
-import {Button, Grid, Typography} from '@material-ui/core';
+import {Button, Typography} from '@material-ui/core';
 import { Player, ControlBar } from 'video-react';
 import '../../../node_modules/video-react/dist/video-react.css';
-import {AnnotationForm, CreateAnnotationDialog} from '../'
+import {CreateAnnotationDialog} from '../'
 import * as CommentActions from "../../actions/videos/CommentActions";
+import {  CommentCard, CommentsTimeline } from '../../components';
+import CommentsStore,{ getCurrentDatePlusDays} from "../../stores/videos/CommentsStore";
+
+
+const videoInfo = {
+  title: "Second try!",
+  createTimestamp: getCurrentDatePlusDays(-4),
+}
 
 const sources = {
   sintelTrailer: 'http://media.w3.org/2010/05/sintel/trailer.mp4',
   bunnyTrailer: 'http://media.w3.org/2010/05/bunny/trailer.mp4',
   bunnyMovie: 'http://media.w3.org/2010/05/bunny/movie.mp4',
   test: 'http://media.w3.org/2010/05/video/movie_300.webm',
+  //rocky: [require('../../static/videos/rocky_video2.mp4')]
 };
 
 export default class PlayerAnnotationController extends Component {
@@ -19,7 +28,16 @@ export default class PlayerAnnotationController extends Component {
       source: sources.bunnyMovie,
       createAnnotationDialogOpen: false,
       videoTimestamp:0,
+      comments: CommentsStore.getAll(),
     };
+  }
+
+  componentWillMount() {
+    CommentsStore.on("change", () => {
+      this.setState({
+        comments: CommentsStore.getAll(),
+      })
+    })
   }
 
   componentDidMount() {
@@ -46,6 +64,12 @@ export default class PlayerAnnotationController extends Component {
 
   };
 
+  handleCommentTimelinePress=(comment) => {
+    return () => {
+      this.refs.player.seek(comment.videoTimestamp);
+    };
+  }
+
   handleCloseCreateAnnotationDialog = () => {
     this.setState({ createAnnotationDialogOpen: false });
   };
@@ -56,13 +80,15 @@ export default class PlayerAnnotationController extends Component {
   }
 
   render() {
-    const {videoTimestamp,createAnnotationDialogOpen} = this.state;
+    const {videoTimestamp,createAnnotationDialogOpen,comments} = this.state;
     return (
       <div>
         <Player ref="player" >
           <source src={this.state.source} />
           <ControlBar autoHide={false} />
         </Player>
+
+        <br/>
 
         <Button
           variant="contained"
@@ -76,6 +102,21 @@ export default class PlayerAnnotationController extends Component {
           videoTimestamp={videoTimestamp}
           handleClose={this.handleCloseCreateAnnotationDialog}
           handleCreate={this.handleCreateAnnotation}/>
+
+        <br/><br/>
+
+        <Typography variant="h6">
+          Feedback({comments.length})
+        </Typography>
+
+        <CommentsTimeline comments={comments}
+                          handleCommentTimelinePress={this.handleCommentTimelinePress}/>
+
+        <br/>
+
+        {this.state.comments.map((comment) =>
+          <CommentCard comment={comment}/>
+        )}
       </div>
     );
   }
