@@ -1,18 +1,8 @@
 import {EventEmitter} from "events";
 import dispatcher from "../../dispatcher"
 import * as VideoActionConstants from '../../actions/videos/VideoActionConstants'
-import * as CommentActions from "../../actions/videos/CommentActions"
 
-function getCurrentDatePlusDays(days) {
-  const options = {
-    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
-  };
-  const currentDate = new Date();
-  currentDate.setDate(currentDate.getDate() + days);
-  return currentDate.toLocaleDateString('en-US', options);
-}
-
-class CommentsStore extends EventEmitter {
+class PlaylistsStore extends EventEmitter {
   constructor() {
     super();
 
@@ -29,7 +19,7 @@ class CommentsStore extends EventEmitter {
         commentChildren: [],
 
         text: "Next time you take a video of the presentation, it'd be better to stand up. There"
-            + " are many aspects of presenting, such as gestures, that have to be practiced.",
+          + " are many aspects of presenting, such as gestures, that have to be practiced.",
         //images: [require('../../static/images/paella.jpg'), require('../../static/images/contemplative-reptile.jpg')],
         images: [],
         videos: [],
@@ -46,8 +36,8 @@ class CommentsStore extends EventEmitter {
         commentChildren: [],
 
         text: "Great job explaining the value of the product here!  However, it would be more effective to"
-              + " lead the product narrative with a user story and then go into more detail about what the"
-              + " product is.",
+          + " lead the product narrative with a user story and then go into more detail about what the"
+          + " product is.",
         //images: [require('../../static/images/contemplative-reptile.jpg')],
         images: [],
         videos: [],
@@ -82,7 +72,6 @@ class CommentsStore extends EventEmitter {
   }
 }
 
-const commentsStore = new CommentsStore;
-dispatcher.register(commentsStore.handleActions.bind(commentsStore));
-export default commentsStore;
-
+const playlistsStore = new PlaylistsStore;
+dispatcher.register(playlistsStore.handleActions.bind(playlistsStore));
+export default playlistsStore;

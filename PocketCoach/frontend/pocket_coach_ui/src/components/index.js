@@ -6,6 +6,9 @@ import AnnotationForm from './videos/AnnotationForm';
 import PlayerControllerExample from './videos/PlayerControllerExample'
 import PlayerAnnotationController from './videos/PlayerAnnotationController'
 import CreateAnnotationDialog from './videos/CreateAnnotationDialog'
+import CommentsTimeline from './videos/CommentsTimeline'
+import PlaylistPanel from './videos/PlaylistPanel'
+import RecommendedCoachesPanel from './videos/RecommendedCoachesPanel'
 
 export {
   Header,
@@ -16,4 +19,7 @@ export {
   PlayerControllerExample,
   PlayerAnnotationController,
   CreateAnnotationDialog,
+  CommentsTimeline,
+  PlaylistPanel,
+  RecommendedCoachesPanel,
 };

@@ -1,25 +1,39 @@
 import React, { Component } from 'react';
-import {Button, Grid, Typography} from '@material-ui/core';
+import {Button, Typography, Divider,Grid} from '@material-ui/core';
 import { Player, ControlBar } from 'video-react';
 import '../../../node_modules/video-react/dist/video-react.css';
-import {AnnotationForm, CreateAnnotationDialog} from '../'
+import {CreateAnnotationDialog} from '../'
 import * as CommentActions from "../../actions/videos/CommentActions";
+import {  CommentCard, CommentsTimeline } from '../../components';
+import CommentsStore from "../../stores/videos/CommentsStore";
+import PlaylistPanel from "./PlaylistPanel";
 
-const sources = {
-  sintelTrailer: 'http://media.w3.org/2010/05/sintel/trailer.mp4',
-  bunnyTrailer: 'http://media.w3.org/2010/05/bunny/trailer.mp4',
-  bunnyMovie: 'http://media.w3.org/2010/05/bunny/movie.mp4',
-  test: 'http://media.w3.org/2010/05/video/movie_300.webm',
-};
+function getCurrentDatePlusDays(days) {
+  const options = {
+    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+  };
+  const currentDate = new Date();
+  currentDate.setDate(currentDate.getDate() + days);
+  return currentDate.toLocaleDateString('en-US', options);
+}
 
 export default class PlayerAnnotationController extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      source: sources.bunnyMovie,
+      curVideo: props.curVideo,
       createAnnotationDialogOpen: false,
       videoTimestamp:0,
+      comments: CommentsStore.getAll(),
     };
+  }
+
+  componentWillMount() {
+    CommentsStore.on("change", () => {
+      this.setState({
+        comments: CommentsStore.getAll(),
+      })
+    })
   }
 
   componentDidMount() {
@@ -46,6 +60,12 @@ export default class PlayerAnnotationController extends Component {
 
   };
 
+  handleCommentTimelinePress=(comment) => {
+    return () => {
+      this.refs.player.seek(comment.videoTimestamp);
+    };
+  }
+
   handleCloseCreateAnnotationDialog = () => {
     this.setState({ createAnnotationDialogOpen: false });
   };
@@ -56,26 +76,71 @@ export default class PlayerAnnotationController extends Component {
   }
 
   render() {
-    const {videoTimestamp,createAnnotationDialogOpen} = this.state;
+    const {videoTimestamp,createAnnotationDialogOpen,comments, curVideo} = this.state;
     return (
       <div>
-        <Player ref="player" >
-          <source src={this.state.source} />
-          <ControlBar autoHide={false} />
-        </Player>
-
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={this.handleOpenCreateAnnotationDialog}>
-          Create Feedback Annotation
-        </Button>
-
         <CreateAnnotationDialog
           open={createAnnotationDialogOpen}
           videoTimestamp={videoTimestamp}
           handleClose={this.handleCloseCreateAnnotationDialog}
           handleCreate={this.handleCreateAnnotation}/>
+
+        <Player ref="player" >
+          <source src={curVideo.videoPath} />
+          <ControlBar autoHide={false} />
+        </Player>
+
+
+        <br/>
+
+        <Grid container spacing={24} >
+          <Grid item xs={7}>
+            <Typography variant="h6">
+              {curVideo.title}
+            </Typography>
+            <Typography variant="p">
+              {curVideo.createTimestamp}
+            </Typography>
+          </Grid>
+          <Grid item xs={5}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.handleOpenCreateAnnotationDialog}>
+              Create Feedback Annotation
+            </Button>
+          </Grid>
+        </Grid>
+
+        <br/>
+        <Divider/>
+        <br/>
+
+        <Typography variant="h6">
+          Goals:
+        </Typography>
+        <Typography variant="p">
+          {curVideo.goals}
+        </Typography>
+
+        <br/>
+        <Divider/>
+        <br/>
+
+        <br/>
+
+        <Typography variant="h6">
+          Feedback({comments.length})
+        </Typography>
+
+        <CommentsTimeline comments={comments}
+                          handleCommentTimelinePress={this.handleCommentTimelinePress}/>
+
+        <br/>
+
+        {this.state.comments.map((comment) =>
+          <CommentCard comment={comment}/>
+        )}
       </div>
     );
   }
