@@ -8,9 +8,10 @@ class VideoAnnotationsColumn extends Component {
 
 
   render() {
+    const {curVideo} = this.props;
     return (
       <div>
-        <PlayerAnnotationController/>
+        <PlayerAnnotationController curVideo={curVideo}/>
       </div>
     )
   }
