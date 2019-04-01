@@ -23,14 +23,18 @@ class PlaylistPanel extends Component {
 
     this.state = {
       playlist: props.playlist,
-      curVideoIdx: props.curVideo,
+      curVideo: props.curVideo,
     }
   };
 
-  render() {
-    const { playlist, curVideoIdx } = this.state;
-    const { classes } = this.props;
+  getCurVideoIndex(playlist, videoId) {
+    return playlist.videos.findIndex(video => video.videoId === videoId);
+  }
 
+  render() {
+    const { playlist, curVideo } = this.state;
+    const { classes, handlePlaylistVideoListItemClick } = this.props;
+    const curVideoIndex = this.getCurVideoIndex(playlist, curVideo.videoId)
     return (
       <Fragment>
         <Card className={classes.card}>
@@ -46,7 +50,11 @@ class PlaylistPanel extends Component {
 
             {playlist.videos.map((video) =>
             <Fragment>
-              <ListItem alignItems="flex-start">
+              <ListItem
+                key={video.videoId}
+                alignItems="flex-start"
+                selected={video.videoId === curVideo.videoId}
+                onClick={event => handlePlaylistVideoListItemClick(playlist, video.videoId)}>
                 <ListItemAvatar>
                   <Avatar>{video.icon}</Avatar>
                 </ListItemAvatar>

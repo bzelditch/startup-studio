@@ -77,7 +77,7 @@ const playlists = [
 ];
 
 
-class VideoDetailsPage extends Component {
+class CoachSessions extends Component {
   constructor(props) {
     super(props);
 
@@ -112,17 +112,12 @@ class VideoDetailsPage extends Component {
   };
 
 
-render() {
+  render() {
     const {curPlaylistId, curVideoIdxInPlaylist} = this.state;
     const playlist =  this.getPlaylistDetails(curPlaylistId);
     const curVideo = playlist.videos[curVideoIdxInPlaylist];
     const { classes } = this.props;
-    console.log("curVideoIdxInPlaylist")
-    console.log(curVideoIdxInPlaylist)
-    console.log("playlist")
-    console.log(playlist)
-    console.log("curVideo")
-    console.log(curVideo)
+
     return (
       <Grid container spacing={24} className={classes.root}>
         <Grid item xs={12}>
@@ -138,17 +133,13 @@ render() {
             </Link>
           </Breadcrumbs>
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={12}>
           <VideoAnnotationsColumn curVideo={curVideo}/>
         </Grid>
-        <Grid item xs={4}>
-          <PlaylistPanel playlist={playlist} curVideo={curVideo} handlePlaylistVideoListItemClick={this.handlePlaylistVideoListItemClick}/>
-          <br/>
-          <RecommendedCoachesPanel/>
-        </Grid>
+
       </Grid>
     )
   }
 };
 
-export default withStyles(styles)(VideoDetailsPage);
+export default withStyles(styles)(CoachSessions);

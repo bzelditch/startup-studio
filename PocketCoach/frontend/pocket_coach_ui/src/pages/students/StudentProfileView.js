@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import { CommentCard, NewComment, VideoAnnotationsColumn } from '../../components';
 import {StudentProfileTabs} from "../../components";
-import {Playlists, ProgressTracker, StudentProfile,StudentVideos} from "../";
+import {StudentProfile, FindCoaches, MySessions} from "../";
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -18,19 +17,19 @@ const styles = theme => ({
   appBarSpacer: theme.mixins.toolbar,
 })
 
-class CommentView extends Component {
+class StudentProfileView extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       selectedStudentTab: "Profile",
-      studentTabs: ["Profile", "Playlists", "Videos", "Progress"],
+      studentTabs: ["Profile", "Find Coaches", "My Sessions"],
     }
   };
 
   handleStudentTabSelected = tab => {
     this.setState({
-      selectedCoachTab: tab,
+      selectedStudentTab: tab,
     })
   }
 
@@ -38,12 +37,10 @@ class CommentView extends Component {
     switch (tab) {
       case 'Profile':
         return <StudentProfile/>
-      case 'Playlists':
-        return <Playlists/>
-      case 'Videos':
-        return <StudentVideos />
-      case 'Progress':
-        return <ProgressTracker />
+      case 'Find Coaches':
+        return <FindCoaches/>
+      case 'My Sessions':
+        return <MySessions/>
     }
   }
 
@@ -67,4 +64,4 @@ class CommentView extends Component {
   }
 };
 
-export default withStyles(styles)(CommentView);
+export default withStyles(styles)(StudentProfileView);

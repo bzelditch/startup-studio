@@ -94,7 +94,7 @@ export default class PlayerAnnotationController extends Component {
         <br/>
 
         <Grid container spacing={24} >
-          <Grid item xs={7}>
+          <Grid item xs={8}>
             <Typography variant="h6">
               {curVideo.title}
             </Typography>
@@ -102,7 +102,7 @@ export default class PlayerAnnotationController extends Component {
               {curVideo.createTimestamp}
             </Typography>
           </Grid>
-          <Grid item xs={5}>
+          <Grid item xs={4}>
             <Button
               variant="contained"
               color="primary"

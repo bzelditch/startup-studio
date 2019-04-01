@@ -1,5 +1,6 @@
 import Header from './layout/Header';
 import StudentProfileTabs from './layout/StudentProfileTabs';
+import CoachProfileTabsNav from './layout/CoachProfileTabNav';
 import VideoAnnotationsColumn from './videos/VideoAnnotationsColumn';
 import CommentCard from './videos/CommentCard';
 import AnnotationForm from './videos/AnnotationForm';
@@ -13,6 +14,7 @@ import RecommendedCoachesPanel from './videos/RecommendedCoachesPanel'
 export {
   Header,
   StudentProfileTabs,
+  CoachProfileTabsNav,
   VideoAnnotationsColumn,
   CommentCard,
   AnnotationForm,
