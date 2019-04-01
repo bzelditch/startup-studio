@@ -62,7 +62,6 @@ class CoachProfileView extends Component {
 
         <div className={classes.layout}>
           <div className={classes.appBarSpacer} />
-          <h1>Welcome Coach {match.params.id}</h1>
           <Switch>
             <Route path="/sessions" component={CoachSessions} />
             <Route path="/" component={CoachProfile} />

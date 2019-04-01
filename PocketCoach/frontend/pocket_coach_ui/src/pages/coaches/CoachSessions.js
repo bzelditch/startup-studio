@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import { Typography, Grid, Card, Link,CardHeader,Toolbar} from '@material-ui/core';
+import { Typography, Grid, Card, Link,CardHeader} from '@material-ui/core';
 import {Breadcrumbs} from '@material-ui/lab';
-import {VideoAnnotationsColumn, PlaylistPanel, RecommendedCoachesPanel} from "../../components";
+import {VideoAnnotationsColumn} from "../../components";
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
@@ -23,7 +23,9 @@ function getCurrentDatePlusDays(days) {
 const videos = [
   {
     videoId: 1,
-    title: "First try!",
+    studentId: 1,
+    coachIds: [1],
+    title: "Q1/Q2 Presentation: First try!",
     icon: 1,
     createTimestamp: getCurrentDatePlusDays(-13),
     numFeedback: 7,
@@ -32,7 +34,9 @@ const videos = [
   },
   {
     videoId: 2,
-    title: "Second try!",
+    studentId: 1,
+    coachIds: [1],
+    title: "Q1/Q2 Presentation: Second try!",
     icon: 2,
     createTimestamp: getCurrentDatePlusDays(-3),
     numFeedback: 3,
@@ -41,7 +45,9 @@ const videos = [
   },
   {
     videoId: 3,
-    title: "Third try!",
+    studentId: 1,
+    coachIds: [1],
+    title: "Q1/Q2 Presentation: Third try!",
     icon: 3,
     createTimestamp: getCurrentDatePlusDays(0),
     numFeedback: 2,
@@ -50,6 +56,8 @@ const videos = [
   },
   {
     videoId: 4,
+    studentId: 1,
+    coachIds: [1],
     title: "Rocky Studio!",
     icon: 1,
     createTimestamp: getCurrentDatePlusDays(-40),
@@ -59,63 +67,27 @@ const videos = [
   },
 ];
 
-const playlists = [
-  {
-    playlistId: 1,
-    title: "Q1/Q2 Presentation!",
-    icon: 1,
-    createTimestamp: getCurrentDatePlusDays(-13),
-    videos: [1,2,3],
-  },
-  {
-    playlistId: 2,
-    title: "Startup Studio Application!",
-    icon: 2,
-    createTimestamp: getCurrentDatePlusDays(-3),
-    videos: [4],
-  },
-];
-
 
 class CoachSessions extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      playlists: playlists,
       videos: videos,
-      curPlaylistId: 1,
-      curVideoIdxInPlaylist:2, //0-indexed
+      curVideoId:3,
     }
   };
 
-  getPlaylistDetails(playlistId) {
-    const playlist = this.state.playlists.find(p => p.playlistId === playlistId );
-    playlist.videos = playlist.videos.map(videoId => this.getVideoDetails(videoId))
-    return playlist;
-  }
-
   getVideoDetails(videoId) {
-    console.log("getVideoDetails")
-    console.log(videoId)
-    console.log(this.state.videos)
-    console.log(this.state.videos.find(v => v.videoId === videoId ))
-    return this.state.videos.find(v => v.videoId === videoId );
+    console.log("getVideoDetails");
+    console.log(videoId);
+    const videoDetails = this.state.videos.find(v => v.videoId === videoId )
+    return videoDetails;
   }
-
-  getVideoIndexInPlaylist(playlist, videoId) {
-    return playlist.videos.findIndex(video => video.videoId === videoId );
-  }
-
-  handlePlaylistVideoListItemClick = (playlist, videoId) => {
-    this.setState({ curVideoIdxInPlaylist:this.getVideoIndexInPlaylist(playlist, videoId) });
-  };
-
 
   render() {
-    const {curPlaylistId, curVideoIdxInPlaylist} = this.state;
-    const playlist =  this.getPlaylistDetails(curPlaylistId);
-    const curVideo = playlist.videos[curVideoIdxInPlaylist];
+    const {curVideoId} = this.state;
+    const curVideo = this.getVideoDetails(curVideoId);
     const { classes } = this.props;
 
     return (
@@ -123,10 +95,7 @@ class CoachSessions extends Component {
         <Grid item xs={12}>
           <Breadcrumbs separator="›" arial-label="Breadcrumb">
             <Link color="inherit"  >
-              Playlists
-            </Link>
-            <Link color="inherit"  >
-              {playlist.title}
+              My Sessions
             </Link>
             <Link color="inherit"  >
               {curVideo.title}
@@ -136,7 +105,6 @@ class CoachSessions extends Component {
         <Grid item xs={12}>
           <VideoAnnotationsColumn curVideo={curVideo}/>
         </Grid>
-
       </Grid>
     )
   }
