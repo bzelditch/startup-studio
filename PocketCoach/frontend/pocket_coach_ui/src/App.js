@@ -11,8 +11,8 @@ class App extends Component {
         <div>
           <Header/>
           <Switch>
-            <Route path='/student' component={StudentProfileView} />
-            <Route path='/coach/:id' component={CoachProfileView} />
+            <Route strict path='/student' component={StudentProfileView} />
+            <Route strict path='/' component={CoachProfileView} />
           </Switch>
         </div>
       </BrowserRouter>

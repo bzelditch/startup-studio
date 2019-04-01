@@ -3,7 +3,15 @@ import {Paper, Tab, Tabs} from "@material-ui/core";
 import { Route, Link } from 'react-router-dom'
 import {CoachProfile, CoachSessions} from "../../pages";
 
-export default ({studentTabs, selectedStudentTab, onSelect}) => {
+
+function LinkTab(props) {
+  return <Tab component={Link} onClick={event => event.preventDefault()} {...props} />;
+}
+
+export default (props) => {
+  const {studentTabs, selectedStudentTab, onSelect, match, location} = props
+  console.log("tabs")
+  console.log(match)
   const selectedIndex = selectedStudentTab
     ? studentTabs.findIndex(tab => tab.name === selectedStudentTab)
     : 0;
@@ -19,7 +27,7 @@ export default ({studentTabs, selectedStudentTab, onSelect}) => {
           textColor="primary"
         >
           {studentTabs.map(tab =>
-            <Tab key={tab.name} component={Link}  label={tab.name} to={tab.href}/>
+            <LinkTab key={tab.name} component={Link}  label={tab.name} to={tab.href}/>
           )}
         </Tabs>
       </Paper>
