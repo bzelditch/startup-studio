@@ -9,6 +9,8 @@ import CreateAnnotationDialog from './videos/CreateAnnotationDialog'
 import CommentsTimeline from './videos/CommentsTimeline'
 import PlaylistPanel from './videos/PlaylistPanel'
 import RecommendedCoachesPanel from './videos/RecommendedCoachesPanel'
+import StudentProfileLeftPane from './students/StudentProfileLeftPane';
+import StudentProfileRightPane from './students/StudentProfileRightPane';
 
 export {
   Header,
@@ -22,4 +24,6 @@ export {
   CommentsTimeline,
   PlaylistPanel,
   RecommendedCoachesPanel,
+  StudentProfileLeftPane,
+  StudentProfileRightPane
 };
