@@ -96,15 +96,33 @@ class VideoDetailsPage extends Component {
   }
 
   getVideoDetails(videoId) {
+    console.log("getVideoDetails")
+    console.log(videoId)
+    console.log(this.state.videos)
+    console.log(this.state.videos.find(v => v.videoId === videoId ))
     return this.state.videos.find(v => v.videoId === videoId );
   }
 
-  render() {
+  getVideoIndexInPlaylist(playlist, videoId) {
+    return playlist.videos.findIndex(video => video.videoId === videoId );
+  }
+
+  handlePlaylistVideoListItemClick = (playlist, videoId) => {
+    this.setState({ curVideoIdxInPlaylist:this.getVideoIndexInPlaylist(playlist, videoId) });
+  };
+
+
+render() {
     const {curPlaylistId, curVideoIdxInPlaylist} = this.state;
     const playlist =  this.getPlaylistDetails(curPlaylistId);
     const curVideo = playlist.videos[curVideoIdxInPlaylist];
     const { classes } = this.props;
-
+    console.log("curVideoIdxInPlaylist")
+    console.log(curVideoIdxInPlaylist)
+    console.log("playlist")
+    console.log(playlist)
+    console.log("curVideo")
+    console.log(curVideo)
     return (
       <Grid container spacing={24} className={classes.root}>
         <Grid item xs={12}>
@@ -124,7 +142,7 @@ class VideoDetailsPage extends Component {
           <VideoAnnotationsColumn curVideo={curVideo}/>
         </Grid>
         <Grid item xs={4}>
-          <PlaylistPanel playlist={playlist} curVideo={curVideo}/>
+          <PlaylistPanel playlist={playlist} curVideo={curVideo} handlePlaylistVideoListItemClick={this.handlePlaylistVideoListItemClick}/>
           <br/>
           <RecommendedCoachesPanel/>
         </Grid>
