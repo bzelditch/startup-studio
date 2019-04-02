@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import { Typography, Grid, Card, Link,CardHeader} from '@material-ui/core';
 import {Breadcrumbs} from '@material-ui/lab';
-import {VideoAnnotationsColumn} from "../../components";
+import {PlayerAnnotationController} from "../../components";
 import { withStyles } from '@material-ui/core/styles';
 import VideoStore from "../../stores/videos/VideoStore";
+import CoachStore from "../../stores/coaches/CoachStore";
 
 const styles = {
   root: {
@@ -17,13 +18,14 @@ class CoachSessions extends Component {
     super(props);
 
     this.state = {
-      curVideoId:3,
+      coachId: parseInt(props.match.params.coachId),
+      curVideoId: parseInt(props.match.params.videoId),
     }
   };
 
-
   render() {
-    const {curVideoId} = this.state;
+    const {coachId, curVideoId} = this.state;
+    const curCoach = CoachStore.getCoachDetailsById(coachId)
     const curVideo = VideoStore.getVideoDetailsById(curVideoId);
     const { classes } = this.props;
 
@@ -40,7 +42,7 @@ class CoachSessions extends Component {
           </Breadcrumbs>
         </Grid>
         <Grid item xs={12}>
-          <VideoAnnotationsColumn curVideo={curVideo}/>
+          <PlayerAnnotationController curCoach={curCoach} curVideo={curVideo}/>
         </Grid>
       </Grid>
     )

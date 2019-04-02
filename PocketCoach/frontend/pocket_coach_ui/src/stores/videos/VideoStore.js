@@ -70,7 +70,6 @@ class VideoStore extends EventEmitter {
   }
 
   getVideoDetailsById(videoId) {
-    console.log("getVideoDetailsById");
     const videoDetails = this.videoDatabase.find(v => v.videoId === videoId )
     return videoDetails;
   }

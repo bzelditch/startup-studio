@@ -25,7 +25,6 @@ const styles = theme => ({
 
 });
 
-const coachId = 1;
 
 class CommentCard extends React.Component {
   constructor(props) {
@@ -33,20 +32,20 @@ class CommentCard extends React.Component {
   }
 
   render() {
-    const {comment, classes} = this.props
-
+    const {comment, classes} = this.props;
+    const commentCoachDetails = comment.coachId? CoachStore.getCoachDetailsById(comment.coachId): null;
     return (
       <Card className={classes.card}>
         <CardHeader
           avatar={
-            CoachStore.getCoachAvatarById(coachId)
+            CoachStore.getCoachAvatarById(comment.coachId)
           }
           action={(
             <IconButton>
               <MoreVertIcon />
             </IconButton>
           )}
-          title={comment.coachId}
+          title={commentCoachDetails.firstName + " " + commentCoachDetails.lastName}
           subheader={
             <Fragment>
               <Typography color="textSecondary">
@@ -59,7 +58,6 @@ class CommentCard extends React.Component {
 
           }
         />
-
 
         <CardContent>
         <Typography component="p">

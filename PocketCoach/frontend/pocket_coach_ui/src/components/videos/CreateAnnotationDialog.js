@@ -13,6 +13,7 @@ class CreateAnnotationDialog extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      curVideo: this.props.curVideo,
       open: this.props.open,
       videoTimestamp: this.props.videoTimestamp,
     };
@@ -21,14 +22,15 @@ class CreateAnnotationDialog extends Component {
 
   componentWillReceiveProps(props) {
     this.setState({
+      curVideo: props.curVideo,
       open: props.open,
       videoTimestamp: props.videoTimestamp,
     })
   }
 
   render() {
-    const {open, videoTimestamp} = this.state;
-    const {classes} = this.props;
+    const {curVideo, open, videoTimestamp} = this.state;
+    const {curCoach, classes} = this.props;
 
     return (
       <Fragment>
@@ -40,7 +42,10 @@ class CreateAnnotationDialog extends Component {
         >
           <DialogTitle>Create a New Annotation.</DialogTitle>
           <DialogContent>
-            <AnnotationForm videoTimestamp={videoTimestamp} onSubmit={this.props.handleCreate}/>
+            <AnnotationForm curCoach={curCoach}
+                            curVideo={curVideo}
+                            videoTimestamp={videoTimestamp}
+                            onSubmit={this.props.handleCreate}/>
           </DialogContent>
 
         </Dialog>

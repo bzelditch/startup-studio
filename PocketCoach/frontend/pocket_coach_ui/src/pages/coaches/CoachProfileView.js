@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import {CoachProfile, CoachSessions} from "../";
 import { withStyles } from '@material-ui/core/styles';
-import {Link, Route, Switch} from 'react-router-dom'
+import {Link, Redirect, Route, Switch} from 'react-router-dom'
 import {Paper, Tab, Tabs} from "@material-ui/core";
 import {CoachHeader} from "../../components";
 
@@ -32,19 +32,19 @@ class CoachProfileView extends Component {
     super(props);
     console.log("CoachProfileView")
     console.log(props)
+    const demoVideoId = 3
     this.state = {
-      coachTabs: [createTabObject("Profile",  "/"), createTabObject("My Sessions",  "/sessions")],
+      coachTabs: [createTabObject("Profile",  props.match.url ), createTabObject("My Sessions",  props.match.url+"/sessions/"+demoVideoId)],
     }
   };
 
   render() {
     const {coachTabs} = this.state
-    const { classes, match, location} = this.props;
-    console.log(this.props)
+    const { classes, location} = this.props;
 
     return (
       <Fragment >
-        <CoachHeader/>
+        <CoachHeader {...this.props}/>
         <Paper >
           <Tabs
             value={location.pathname}
@@ -52,7 +52,7 @@ class CoachProfileView extends Component {
             textColor="primary"
             >
             {coachTabs.map(tab =>
-              <Tab label={tab.name} value={tab.href} component={Link} to={tab.href} {...this.props}/>
+              <Tab key={tab.name} label={tab.name} value={tab.href} component={Link} to={tab.href} {...this.props}/>
             )}
           </Tabs>
         </Paper>
@@ -60,8 +60,8 @@ class CoachProfileView extends Component {
         <div className={classes.layout}>
           <div className={classes.appBarSpacer} />
           <Switch>
-            <Route path="/sessions" component={CoachSessions} />
-            <Route path="/" component={CoachProfile} />
+            <Route path="/coach/:coachId/sessions/:videoId" component={CoachSessions} />
+            <Route path="/coach/:coachId" component={CoachProfile} />
           </Switch>
 
         </div>

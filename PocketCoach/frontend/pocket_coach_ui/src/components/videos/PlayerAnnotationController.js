@@ -7,15 +7,6 @@ import { CommentCard, FeedbackCard, CommentsTimeline, CreateAnnotationDialog, Co
 import CommentsStore from "../../stores/videos/CommentStore";
 import FeedbackStore from "../../stores/videos/FeedbackStore";
 
-function getCurrentDatePlusDays(days) {
-  const options = {
-    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
-  };
-  const currentDate = new Date();
-  currentDate.setDate(currentDate.getDate() + days);
-  return currentDate.toLocaleDateString('en-US', options);
-}
-
 export default class PlayerAnnotationController extends Component {
   constructor(props) {
     super(props);
@@ -105,15 +96,20 @@ export default class PlayerAnnotationController extends Component {
 
   render() {
     const {videoTimestamp,createAnnotationDialogOpen,completeFeedbackDialogOpen,comments, curVideo} = this.state;
+    const {curCoach} = this.props;
     return (
       <div>
         <CreateAnnotationDialog
+          curCoach={curCoach}
+          curVideo={curVideo}
           open={createAnnotationDialogOpen}
           videoTimestamp={videoTimestamp}
           handleClose={this.handleCloseCreateAnnotationDialog}
           handleCreate={this.handleCreateAnnotation}/>
 
         <CompleteFeedbackDialog
+          curCoach={curCoach}
+          curVideo={curVideo}
           open={completeFeedbackDialogOpen}
           handleClose={this.handleCloseCompleteFeedbackDialog}
           handleSubmit={this.handleCompleteFeedback}/>

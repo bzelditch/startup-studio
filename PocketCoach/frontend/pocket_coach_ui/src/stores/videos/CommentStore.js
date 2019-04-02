@@ -20,7 +20,7 @@ class CommentStore extends EventEmitter {
         commentId: 1,
         videoId: 3,
         studentId: null,
-        coachId: "Gigi Rosenburg",
+        coachId: 1,
         createTimestamp: getCurrentDatePlusDays(-3),
         updateTimestamp: getCurrentDatePlusDays(-3),
         videoTimestamp:  2.673682,
@@ -37,7 +37,7 @@ class CommentStore extends EventEmitter {
         commentId: 2,
         videoId: 3,
         studentId: null,
-        coachId: "Gigi Rosenburg",
+        coachId: 1,
         createTimestamp: getCurrentDatePlusDays(-3),
         updateTimestamp: getCurrentDatePlusDays(-1),
         videoTimestamp: 25.553137 ,
@@ -45,8 +45,8 @@ class CommentStore extends EventEmitter {
         commentChildren: [],
 
         text: "Great job explaining the value of the product here!  However, it would be more effective to"
-              + " lead the product narrative with a user story and then go into more detail about what the"
-              + " product is.",
+          + " lead the product narrative with a user story and then go into more detail about what the"
+          + " product is.",
         //images: [require('../../static/images/contemplative-reptile.jpg')],
         images: [],
         videos: [],
