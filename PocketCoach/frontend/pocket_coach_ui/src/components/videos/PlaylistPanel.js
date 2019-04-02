@@ -16,7 +16,6 @@ const styles = theme => ({
 });
 
 
-
 class PlaylistPanel extends Component {
   constructor(props) {
     super(props);

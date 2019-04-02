@@ -10,7 +10,8 @@ import {
 } from '@material-ui/core/';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { withStyles } from '@material-ui/core/styles';
-import red from '@material-ui/core/colors/red';
+import CoachStore from "../../stores/coaches/CoachStore";
+
 
 const styles = theme => ({
   card: {
@@ -21,11 +22,10 @@ const styles = theme => ({
     height: 100,
     margin: theme.spacing.unit,
   },
-  avatar: {
-    backgroundColor: red[500],
-  },
+
 });
 
+const coachId = 1;
 
 class CommentCard extends React.Component {
   constructor(props) {
@@ -34,11 +34,12 @@ class CommentCard extends React.Component {
 
   render() {
     const {comment, classes} = this.props
+
     return (
       <Card className={classes.card}>
         <CardHeader
           avatar={
-            <Avatar className={classes.avatar}>G</Avatar>
+            CoachStore.getCoachAvatarById(coachId)
           }
           action={(
             <IconButton>

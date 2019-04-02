@@ -1,11 +1,11 @@
 import React from 'react'
-import {AppBar, Toolbar, Typography, IconButton, Button,InputBase,Avatar,Tooltip} from '@material-ui/core'
+import {AppBar, Toolbar, Typography, IconButton, InputBase, Tooltip} from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search';
 import { withStyles } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import MessageIcon from '@material-ui/icons/Sms';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import red from "@material-ui/core/colors/red";
+import CoachStore from "../../stores/coaches/CoachStore";
 
 const styles = theme => ({
   root: {
@@ -19,9 +19,6 @@ const styles = theme => ({
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
-  },
-  avatar: {
-    backgroundColor: red[500],
   },
   search: {
     position: 'relative',
@@ -66,7 +63,9 @@ const styles = theme => ({
   },
 });
 
-class Header extends React.Component {
+const coachId = 1;
+
+class CoachHeader extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -106,7 +105,7 @@ class Header extends React.Component {
             </Tooltip>
             <Tooltip title="Profile Settings" aria-label="Profile Settings">
               <IconButton color="inherit">
-                <Avatar className={classes.avatar}>G</Avatar>
+                {CoachStore.getCoachAvatarById(coachId)}
               </IconButton>
             </Tooltip>
           </Toolbar>
@@ -116,4 +115,4 @@ class Header extends React.Component {
   }
 };
 
-export default withStyles(styles)(Header);
+export default withStyles(styles)(CoachHeader);
