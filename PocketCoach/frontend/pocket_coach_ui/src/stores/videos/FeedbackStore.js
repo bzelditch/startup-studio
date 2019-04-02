@@ -31,8 +31,8 @@ class FeedbackStore extends EventEmitter {
     this.nextFeedbackId = this.feedbackDatabase.length + 1;
   }
 
-  getAll() {
-    return this.feedbackDatabase;
+  getAllFeedbackForVideoId(videoId) {
+    return this.feedbackDatabase.filter(f => f.videoId === videoId)
   }
 
   createFeedback(feedback) {

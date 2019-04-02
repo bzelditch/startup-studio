@@ -15,7 +15,7 @@ class CommentStore extends EventEmitter {
   constructor() {
     super();
 
-    this.comments = [
+    this.commentDatabase = [
       {
         commentId: 1,
         videoId: 3,
@@ -51,27 +51,48 @@ class CommentStore extends EventEmitter {
         images: [],
         videos: [],
       },
+      {
+        commentId: 3,
+        videoId: 2,
+        studentId: null,
+        coachId: 1,
+        createTimestamp: getCurrentDatePlusDays(-3),
+        updateTimestamp: getCurrentDatePlusDays(-1),
+        videoTimestamp: 28.553137 ,
+        isDraft: true,
+        commentChildren: [],
+
+        text: "Great job explaining the business strategy!",
+        //images: [require('../../static/images/contemplative-reptile.jpg')],
+        images: [],
+        videos: [],
+      },
+
     ];
 
-    this.nextCommentId = this.comments.length + 1
+    this.nextCommentId = this.commentDatabase.length + 1
   }
 
-  getAll() {
-    return this.comments;
+  sortCommentsBy(field) {
+    
+  }
+
+  getAllCommentsForVideoId(videoId) {
+    return this.commentDatabase.filter(c => c.videoId === videoId)
   }
 
   createAnnotation(annotation) {
     const commentId = this.nextCommentId;
     const currentTimestamp = new Date();
 
-    this.comments.push({
+    this.commentDatabase.push({
       ...annotation,
       commentId: commentId,
       createTimestamp: currentTimestamp.toLocaleDateString('en-US'),
       updateTimestamp: currentTimestamp.toLocaleDateString('en-US'),
     })
 
-    this.nextCommentId = this.comments.length + 1
+    this.nextCommentId = this.commentDatabase.length + 1
 
     this.emit("change")
   }

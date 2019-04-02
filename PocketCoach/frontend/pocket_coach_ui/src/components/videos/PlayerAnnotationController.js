@@ -15,21 +15,21 @@ export default class PlayerAnnotationController extends Component {
       createAnnotationDialogOpen: false,
       completeFeedbackDialogOpen: false,
       videoTimestamp:0,
-      comments: CommentsStore.getAll(),
-      feedback: FeedbackStore.getAll(),
+      comments: CommentsStore.getAllCommentsForVideoId(props.curVideo.videoId),
+      feedback: FeedbackStore.getAllFeedbackForVideoId(props.curVideo.videoId),
     };
   }
 
   componentWillMount() {
     CommentsStore.on("change", () => {
       this.setState({
-        comments: CommentsStore.getAll(),
+        comments: CommentsStore.getAllCommentsForVideoId(this.state.curVideo.videoId),
       })
     })
 
     FeedbackStore.on("change", () => {
       this.setState({
-        feedback: FeedbackStore.getAll(),
+        feedback: FeedbackStore.getAllFeedbackForVideoId(this.state.curVideo.videoId),
       })
     })
 
