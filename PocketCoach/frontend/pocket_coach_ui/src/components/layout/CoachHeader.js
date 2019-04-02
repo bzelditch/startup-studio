@@ -63,15 +63,14 @@ const styles = theme => ({
   },
 });
 
-const coachId = 1;
-
 class CoachHeader extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    const {classes} = this.props;
+    const {classes, match} = this.props;
+    const coachId = parseInt(match.params.coachId);
     return (
       <div className={classes.root}>
         <AppBar position="static">

@@ -21,7 +21,7 @@ const styles = theme => ({
 });
 
 const videoId = 3;
-const coachId = 1;
+
 
 class AnnotationForm extends Component {
   constructor(props) {
@@ -31,9 +31,9 @@ class AnnotationForm extends Component {
         selectedTab: 0,
         draftAnnotation: {
           commentId: null,
-          videoId: videoId,
+          videoId: props.curVideo.videoId,
           studentId: null,
-          coachId: coachId,
+          coachId: props.curCoach.coachId,
           createTimestamp: null,
           updateTimestamp: null,
           videoTimestamp: this.props.videoTimestamp,

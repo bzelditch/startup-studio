@@ -76,7 +76,6 @@ class CoachStore extends EventEmitter {
   }
 
   getCoachDetailsById(coachId){
-    console.log("getCoachDetailsById");
     const coachDetails = this.coachDatabase.find(c => c.coachId === coachId )
     return coachDetails;
   }
