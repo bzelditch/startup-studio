@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import {StudentProfileTabs} from "../../components";
+import {Header, StudentProfileTabs} from "../../components";
 import {StudentProfile, FindCoaches, MySessions} from "../";
 import { withStyles } from '@material-ui/core/styles';
 
@@ -50,6 +50,7 @@ class StudentProfileView extends Component {
 
     return (
       <Fragment >
+        <Header/>
         <StudentProfileTabs
           studentTabs={studentTabs}
           selectedStudentTab={selectedStudentTab}

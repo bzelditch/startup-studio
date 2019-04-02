@@ -3,6 +3,7 @@ import {CoachProfile, CoachSessions} from "../";
 import { withStyles } from '@material-ui/core/styles';
 import {Link, Route, Switch} from 'react-router-dom'
 import {Paper, Tab, Tabs} from "@material-ui/core";
+import {CoachHeader} from "../../components";
 
 const styles = theme => ({
   layout: {
@@ -18,18 +19,13 @@ const styles = theme => ({
   appBarSpacer: theme.mixins.toolbar,
 })
 
-
-function LinkTab(props) {
-  return <Tab component={Link} onClick={event => event.preventDefault()} {...props} />;
-}
-
-
 function createTabObject(name, href) {
   return {
     name: name,
     href: href,
   }
 };
+
 
 class CoachProfileView extends Component {
   constructor(props) {
@@ -45,9 +41,10 @@ class CoachProfileView extends Component {
     const {coachTabs} = this.state
     const { classes, match, location} = this.props;
     console.log(this.props)
+
     return (
       <Fragment >
-
+        <CoachHeader/>
         <Paper >
           <Tabs
             value={location.pathname}
