@@ -49,7 +49,14 @@ class CommentStore extends EventEmitter {
           + " product is.",
         //images: [require('../../static/images/contemplative-reptile.jpg')],
         images: [],
-        videos: [],
+        videos: [
+          {
+            description: "GRU RNN",
+            service: "youtube",
+            url: "https://www.youtube.com/watch?v=xSCy3q2ts44&list=PL1w8k37X_6L_s4ncq-swTBvKDWnRSrinI&index=9",
+            youtubeId: "xSCy3q2ts44",
+          }
+          ],
       },
       {
         commentId: 3,
@@ -70,11 +77,21 @@ class CommentStore extends EventEmitter {
 
     ];
 
+    this.getVideoId = require('get-video-id');
     this.nextCommentId = this.commentDatabase.length + 1
   }
 
   sortCommentsBy(field) {
-    
+
+  }
+
+  createAnnotationVideoObject(videoUrl, videoDescription, youtubeId, service) {
+    return {
+      url: videoUrl,
+      youtubeId: youtubeId,
+      service: service,
+      description: videoDescription,
+    }
   }
 
   getAllCommentsForVideoId(videoId) {
@@ -82,6 +99,8 @@ class CommentStore extends EventEmitter {
   }
 
   createAnnotation(annotation) {
+    console.log("createAnnotation")
+    console.log(annotation)
     const commentId = this.nextCommentId;
     const currentTimestamp = new Date();
 

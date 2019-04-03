@@ -131,7 +131,7 @@ export default class PlayerAnnotationController extends Component {
             </Typography>
 
           </Grid>
-          <Grid container item xs={4} justify="flex-end">
+          <Grid item container xs={4} justify="flex-end">
             <Button
               variant="contained"
               color="primary"
