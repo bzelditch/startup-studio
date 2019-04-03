@@ -2,20 +2,10 @@ import React, { Component } from 'react';
 import {Button, Typography, Divider,Grid} from '@material-ui/core';
 import { Player, ControlBar } from 'video-react';
 import '../../../node_modules/video-react/dist/video-react.css';
-import {CreateAnnotationDialog} from '../'
 import * as CommentActions from "../../actions/videos/CommentActions";
-import {  CommentCard, CommentsTimeline } from '../../components';
-import CommentsStore from "../../stores/videos/CommentsStore";
-import PlaylistPanel from "./PlaylistPanel";
-
-function getCurrentDatePlusDays(days) {
-  const options = {
-    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
-  };
-  const currentDate = new Date();
-  currentDate.setDate(currentDate.getDate() + days);
-  return currentDate.toLocaleDateString('en-US', options);
-}
+import { CommentCard, FeedbackCard, CommentsTimeline, CreateAnnotationDialog, CompleteFeedbackDialog } from '../../components';
+import CommentsStore from "../../stores/videos/CommentStore";
+import FeedbackStore from "../../stores/videos/FeedbackStore";
 
 export default class PlayerAnnotationController extends Component {
   constructor(props) {
@@ -23,17 +13,26 @@ export default class PlayerAnnotationController extends Component {
     this.state = {
       curVideo: props.curVideo,
       createAnnotationDialogOpen: false,
+      completeFeedbackDialogOpen: false,
       videoTimestamp:0,
-      comments: CommentsStore.getAll(),
+      comments: CommentsStore.getAllCommentsForVideoId(props.curVideo.videoId),
+      feedback: FeedbackStore.getAllFeedbackForVideoId(props.curVideo.videoId),
     };
   }
 
   componentWillMount() {
     CommentsStore.on("change", () => {
       this.setState({
-        comments: CommentsStore.getAll(),
+        comments: CommentsStore.getAllCommentsForVideoId(this.state.curVideo.videoId),
       })
     })
+
+    FeedbackStore.on("change", () => {
+      this.setState({
+        feedback: FeedbackStore.getAllFeedbackForVideoId(this.state.curVideo.videoId),
+      })
+    })
+
   }
 
   componentDidMount() {
@@ -48,6 +47,12 @@ export default class PlayerAnnotationController extends Component {
     });
   }
 
+  handleCommentTimelinePress=(comment) => {
+    return () => {
+      this.refs.player.seek(comment.videoTimestamp);
+    };
+  }
+
   handleOpenCreateAnnotationDialog = () => {
     this.refs.player.pause();
     const { player } = this.refs.player.getState();
@@ -60,36 +65,59 @@ export default class PlayerAnnotationController extends Component {
 
   };
 
-  handleCommentTimelinePress=(comment) => {
-    return () => {
-      this.refs.player.seek(comment.videoTimestamp);
-    };
-  }
-
   handleCloseCreateAnnotationDialog = () => {
     this.setState({ createAnnotationDialogOpen: false });
   };
 
   handleCreateAnnotation=(annotation) => {
     this.handleCloseCreateAnnotationDialog();
-    CommentActions.createAnnotationAction(annotation);
+    CommentActions.createDraftAnnotationAction(annotation);
+  }
+
+  handleOpenCompleteFeedbackDialog = () => {
+    this.refs.player.pause();
+
+    this.setState(
+      { completeFeedbackDialogOpen: true,
+      });
+
+  };
+
+  handleCloseCompleteFeedbackDialog = () => {
+    this.setState({ completeFeedbackDialogOpen: false });
+  };
+
+  handleCompleteFeedback=(feedback) => {
+    console.log("handleCompleteFeedback")
+    console.log(feedback)
+    this.handleCloseCompleteFeedbackDialog();
+    CommentActions.createFeedbackAction(feedback);
   }
 
   render() {
-    const {videoTimestamp,createAnnotationDialogOpen,comments, curVideo} = this.state;
+    const {videoTimestamp,createAnnotationDialogOpen,completeFeedbackDialogOpen,comments, curVideo} = this.state;
+    const {curCoach} = this.props;
     return (
       <div>
         <CreateAnnotationDialog
+          curCoach={curCoach}
+          curVideo={curVideo}
           open={createAnnotationDialogOpen}
           videoTimestamp={videoTimestamp}
           handleClose={this.handleCloseCreateAnnotationDialog}
           handleCreate={this.handleCreateAnnotation}/>
 
+        <CompleteFeedbackDialog
+          curCoach={curCoach}
+          curVideo={curVideo}
+          open={completeFeedbackDialogOpen}
+          handleClose={this.handleCloseCompleteFeedbackDialog}
+          handleSubmit={this.handleCompleteFeedback}/>
+
         <Player ref="player" >
           <source src={curVideo.videoPath} />
           <ControlBar autoHide={false} />
         </Player>
-
 
         <br/>
 
@@ -98,11 +126,12 @@ export default class PlayerAnnotationController extends Component {
             <Typography variant="h6">
               {curVideo.title}
             </Typography>
-            <Typography variant="p">
+            <Typography variant="body1">
               {curVideo.createTimestamp}
             </Typography>
+
           </Grid>
-          <Grid item xs={4}>
+          <Grid item container xs={4} justify="flex-end">
             <Button
               variant="contained"
               color="primary"
@@ -138,9 +167,26 @@ export default class PlayerAnnotationController extends Component {
 
         <br/>
 
+        {this.state.feedback.map((feedback) =>
+          <FeedbackCard feedback={feedback}/>
+        )}
+
+        <br/>
+
         {this.state.comments.map((comment) =>
           <CommentCard comment={comment}/>
         )}
+
+        <br/>
+
+        <Grid container item xs={12} justify="flex-end">
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={this.handleOpenCompleteFeedbackDialog}>
+            Submit Feedback and Notify Student
+          </Button>
+        </Grid>
       </div>
     );
   }

@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react';
-import {CoachProfileTabsNav} from "../../components";
 import {CoachProfile, CoachSessions} from "../";
 import { withStyles } from '@material-ui/core/styles';
-import {Link, Route, Switch} from 'react-router-dom'
+import {Link, Redirect, Route, Switch} from 'react-router-dom'
 import {Paper, Tab, Tabs} from "@material-ui/core";
+import {CoachHeader} from "../../components";
 
 const styles = theme => ({
   layout: {
@@ -19,12 +19,6 @@ const styles = theme => ({
   appBarSpacer: theme.mixins.toolbar,
 })
 
-
-function LinkTab(props) {
-  return <Tab component={Link} onClick={event => event.preventDefault()} {...props} />;
-}
-
-
 function createTabObject(name, href) {
   return {
     name: name,
@@ -32,74 +26,44 @@ function createTabObject(name, href) {
   }
 };
 
+
 class CoachProfileView extends Component {
   constructor(props) {
     super(props);
     console.log("CoachProfileView")
     console.log(props)
+    const demoVideoId = 3
     this.state = {
-      selectedCoachTab: "Profile",
-      coachTabs: [createTabObject("Profile",  "/profile"), createTabObject("My Sessions",  "/sessions")],
+      coachTabs: [createTabObject("Profile",  props.match.url ), createTabObject("My Sessions",  props.match.url+"/sessions/"+demoVideoId)],
     }
   };
 
-
-
-  handleCoachTabSelected = tab => {
-    this.setState({
-      selectedCoachTab: tab.name,
-    })
-  }
-
-  handleCallToRouter = (value) => {
-    this.props.history.push(value);
-  }
-
-
   render() {
-    const {coachTabs, selectedCoachTab} = this.state
-    const { classes, match, location} = this.props;
-    console.log(this.props)
+    const {coachTabs} = this.state
+    const { classes, location} = this.props;
+
     return (
       <Fragment >
-        {/*<CoachProfileTabsNav
-          {...this.props}
-          studentTabs={coachTabs}
-          selectedStudentTab={selectedCoachTab}
-          onSelect={this.handleCoachTabSelected}
-        />*/}
-
-        <Paper > {/*className={classes.root}*/}
-          <Fragment>
-            <Tabs value={location.pathname}>
-              <Tab label="Item One" value="/" component={Link} to="/" />
-              <Tab label="Item Two" value="/tab2" component={Link} to="/tab2" />
-            </Tabs>
-            <Switch>
-              <Route path="/tab2" component={CoachSessions} />
-              <Route path="/" component={CoachProfile} />
-            </Switch>
-          </Fragment>
-
+        <CoachHeader {...this.props}/>
+        <Paper >
           <Tabs
             value={location.pathname}
-            onChange={this.handleCallToRouter}
             indicatorColor="primary"
             textColor="primary"
-          >
+            >
             {coachTabs.map(tab =>
-              <LinkTab key={tab.name} component={Link} label={tab.name} to={tab.href} value={tab.href}/>
+              <Tab key={tab.name} label={tab.name} value={tab.href} component={Link} to={tab.href} {...this.props}/>
             )}
           </Tabs>
         </Paper>
 
         <div className={classes.layout}>
           <div className={classes.appBarSpacer} />
-          <h1>Welcome Coach {match.params.id}</h1>
           <Switch>
-            <Route exact path='/profile' component={CoachProfile} />
-            <Route exact path='/sessions' component={CoachSessions} />
+            <Route path="/coach/:coachId/sessions/:videoId" component={CoachSessions} />
+            <Route path="/coach/:coachId" component={CoachProfile} />
           </Switch>
+
         </div>
       </Fragment>
     )
