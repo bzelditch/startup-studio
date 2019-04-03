@@ -5,7 +5,7 @@ import {
   IconButton,
   CardMedia,
   CardContent,
-  Avatar,
+  Grid,
   Typography,
 } from '@material-ui/core/';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -60,10 +60,10 @@ class CommentCard extends React.Component {
         />
 
         <CardContent>
-        <Typography component="p">
+        <Typography component="body1">
           {comment.text}
         </Typography>
-        </CardContent>
+
 
         {comment.images.map((img) =>
           <CardMedia
@@ -72,6 +72,24 @@ class CommentCard extends React.Component {
           />
         )}
 
+        {comment.videos.map((video) =>
+          <Grid container spacing={24} >
+            <Grid item xs={4}>
+              <iframe src={'https://www.youtube.com/embed/' + video.youtubeId}
+                      frameBorder='0'
+                      allow='autoplay; encrypted-media'
+                      allowFullScreen
+                      title='video'
+              />
+            </Grid>
+            <Grid item xs={8}>
+              <Typography component="body1">
+                {video.description}
+              </Typography>
+            </Grid>
+          </Grid>
+        )}
+        </CardContent>
       </Card>
     );
   }

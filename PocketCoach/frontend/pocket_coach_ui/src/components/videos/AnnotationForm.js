@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import MicIcon from '@material-ui/icons/Mic';
 import VideoLibraryIcon from '@material-ui/icons/VideoLibrary';
 import PencilIcon from '@material-ui/icons/Edit';
+import CommentStore from "../../stores/videos/CommentStore";
 
 //import PencilIcon from '@material-ui/icons/Videocam';
 
@@ -20,13 +21,10 @@ const styles = theme => ({
   },
 });
 
-const videoId = 3;
-
-
 class AnnotationForm extends Component {
   constructor(props) {
     super(props);
-
+    this.getVideoId = require('get-video-id');
     this.state = {
         selectedTab: 0,
         draftAnnotation: {
@@ -44,6 +42,11 @@ class AnnotationForm extends Component {
           images: [],
           videos: []
         },
+        videoInfo: {
+          url:"",
+          preview:false,
+          desc:"",
+        }
       }
   }
 
@@ -66,16 +69,53 @@ class AnnotationForm extends Component {
     });
   }
 
+  handleVideoInfoChange = name => event => {
+    this.setState({
+      videoInfo: {
+        ...this.state.videoInfo,
+        [name]: event.target.value,
+      }
+    });
+
+  }
+
+  handleYoutubePreview = () => {
+
+    this.setState({
+      videoInfo: {
+        ...this.state.videoInfo,
+        preview: true,
+      }
+    });
+
+  };
+
   handleSubmit = () => {
+    const videoInfo = this.state.videoInfo
+    const videoProcessing = this.getVideoId(videoInfo.url)
+    const videos = this.state.draftAnnotation.videos
+
+    if (videoProcessing.id) {
+      const videoObj = CommentStore.createAnnotationVideoObject(videoInfo.url, videoInfo.desc, videoProcessing.id, videoProcessing.service)
+      videos.push(videoObj)
+      console.log("push")
+      console.log(videos)
+    }
+
+    console.log(this.state.draftAnnotation)
 
     this.props.onSubmit({
       ...this.state.draftAnnotation,
+      videos: [
+        ...this.state.draftAnnotation.videos,
+        ,
+      ]
     });
 
   };
 
   render() {
-    const {selectedTab,draftAnnotation} = this.state;
+    const {selectedTab,draftAnnotation,videoInfo} = this.state;
     const {text} = draftAnnotation
     const {classes} = this.props;
 
@@ -98,6 +138,7 @@ class AnnotationForm extends Component {
                   <Tab icon={<VideoLibraryIcon />} label="Sample videos"/>
                 </Tabs>
               </AppBar>
+            </Grid>
 
               {selectedTab === 0 ?
                 <TextField
@@ -109,11 +150,44 @@ class AnnotationForm extends Component {
                   placeholder="Provide feedback..."
                   onChange={this.handleChange('text')}
                   margin="normal"
-
-                /> :
-                selectedTab === 1 ?
-                  <Typography variant="body1">Audio</Typography> :
-                  <Typography variant="body1">Video</Typography>}
+                />
+                : selectedTab === 1 ?
+                  <Typography variant="body1">Audio</Typography>
+                  : <Fragment>
+                      <Grid item xs={8}>
+                        <TextField
+                          fullWidth
+                          label="Youtube URL"
+                          value={videoInfo.url}
+                          onChange={this.handleVideoInfoChange('url')}
+                          margin="normal"
+                        />
+                      </Grid>
+                      <Grid item xs={4} >
+                        <Button color="primary" variant="outlined" onClick={this.handleYoutubePreview}>
+                          Preview video
+                        </Button>
+                      </Grid>
+                      {videoInfo.preview && this.getVideoId(videoInfo.url).id?
+                        <iframe src={'https://www.youtube.com/embed/' + this.getVideoId(videoInfo.url).id}
+                                frameBorder='0'
+                                allow='autoplay; encrypted-media'
+                                allowFullScreen
+                                title='video'
+                        />
+                        : null}
+                      <TextField
+                        variant="outlined"
+                        multiline
+                        fullWidth
+                        rows="2"
+                        value={videoInfo.desc}
+                        onChange={this.handleVideoInfoChange('desc')}
+                        placeholder="Provide a description of the video..."
+                        margin="normal"
+                      />
+                    </Fragment>
+              }
                   {/*<TextField
                     variant="outlined"
                     multiline
@@ -125,12 +199,12 @@ class AnnotationForm extends Component {
                     margin="normal"
                   />*/}
 
-            </Grid>
+
 
             <br/><br/>
 
             <Grid container xs={12} justify="flex-end">
-              <Button color="primary" variant="raised" onClick={this.handleSubmit}>
+              <Button color="primary" variant="contained" onClick={this.handleSubmit}>
                 Post Feedback Annotation
               </Button>
             </Grid>
