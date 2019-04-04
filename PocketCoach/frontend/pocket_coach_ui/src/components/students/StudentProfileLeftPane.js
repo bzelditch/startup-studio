@@ -7,12 +7,15 @@ class StudentProfileLeftPane extends React.Component {
         super(props);
         this.userName = props.userName;
         this.userHeadshot = props.userHeadshot;
+        this.userInformation = props.userInformation
     }
     render (props) {
         return (
             <Fragment>
 
-                <StudentInformation userName={this.userName} userHeadshot={this.userHeadshot}/>
+                <StudentInformation userName={this.userName} 
+                                    userHeadshot={this.userHeadshot} 
+                                    userInformation={this.userInformation}/>
                 
                 <br/>
 

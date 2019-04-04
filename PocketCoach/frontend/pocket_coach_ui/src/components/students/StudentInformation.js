@@ -26,8 +26,7 @@ class StudentInformation extends React.Component {
         this.state = {
             userName: props.userName,
             userHeadshot: props.userHeadshot,
-            userCoaches: props.userCoaches,
-            userVideos: props.userVideos
+            userInformation: props.userInformation
         }
     }
     render () {
@@ -40,9 +39,20 @@ class StudentInformation extends React.Component {
                     <Grid item xs={8}>
                         <CardHeader title={this.props.userName}/> {/* Should be passed in via props*/}
                         <CardContent>
-                            <p>
-                                Hi
-                            </p>
+                            <Typography>
+                                Intro: 
+                            </Typography>
+                            <div>
+                                {this.props.userInformation.studentIntro}
+                            </div>
+                            <br>
+                            </br>
+                            <Typography>
+                                Goals: 
+                            </Typography>
+                            <div>
+                                {this.props.userInformation.studentGoals}
+                            </div>
                         </CardContent>
                     </Grid>
                 </Grid>

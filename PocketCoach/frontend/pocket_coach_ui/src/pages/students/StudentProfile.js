@@ -11,6 +11,21 @@ const styles = {
   },
 };
 
+const students = [
+  {
+    studentId: 1,
+    studentName: "Gabi Zandi",
+    studentHeadshot: require('../../static/images/gabi.jpg'),
+    studentInformation: {
+        studentIntro: "I'm an MBA student at Cornell Tech looking for Product Managment roles.",
+        studentGoals: "My goals are to improve my pacing and projection."
+    },
+    studentVideos: [],
+    studentCoaches: []
+    /* Maybe add an additional field for the student's projects */
+  }
+];
+
 class StudentProfile extends React.Component {
   constructor(props) {
     super(props);
@@ -30,11 +45,9 @@ class StudentProfile extends React.Component {
             </Link>
           </Breadcrumbs>
         </Grid>
-        <Grid item xs={8}>
-          <StudentProfileLeftPane/>
-        </Grid>
-        <Grid item xs={4}>
-          <StudentProfileRightPane/>
+        <Grid item xs={12}>
+          <StudentProfileLeftPane userName={students[0].studentName} 
+            userHeadshot={students[0].studentHeadshot} userInformation={students[0].studentInformation}/>
         </Grid>
       </Grid>
     )
@@ -42,22 +55,3 @@ class StudentProfile extends React.Component {
 };
 
 export default withStyles(styles)(StudentProfile);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*export default props => (
-  <Typography variant="h1">
-    Student Profile
-  </Typography>
-);*/
