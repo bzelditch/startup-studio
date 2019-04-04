@@ -11,7 +11,6 @@ import CommentsTimeline from './videos/CommentsTimeline'
 import PlaylistPanel from './videos/PlaylistPanel'
 import RecommendedCoachesPanel from './videos/RecommendedCoachesPanel'
 import StudentProfileLeftPane from './students/StudentProfileLeftPane';
-import StudentProfileRightPane from './students/StudentProfileRightPane';
 import CompleteFeedbackForm from './videos/CompleteFeedbackForm';
 import CompleteFeedbackDialog from './videos/CompleteFeedbackDialog';
 import React from "react";
@@ -31,5 +30,4 @@ export {
   PlaylistPanel,
   RecommendedCoachesPanel,
   StudentProfileLeftPane,
-  StudentProfileRightPane
 };
