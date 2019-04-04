@@ -53,8 +53,8 @@ class CommentStore extends EventEmitter {
           {
             description: "GRU RNN",
             service: "youtube",
-            url: "https://www.youtube.com/watch?v=xSCy3q2ts44&list=PL1w8k37X_6L_s4ncq-swTBvKDWnRSrinI&index=9",
-            youtubeId: "xSCy3q2ts44",
+            url: "https://www.youtube.com/watch?v=-FOCpMAww28&t=9s",
+            youtubeId: "-FOCpMAww28",
           }
           ],
       },
