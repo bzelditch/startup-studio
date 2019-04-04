@@ -94,6 +94,10 @@ export default class PlayerAnnotationController extends Component {
     CommentActions.createFeedbackAction(feedback);
   }
 
+  handleSendNotification = () => {
+    console.log("handleSendNotification")
+  };
+
   render() {
     const {videoTimestamp,createAnnotationDialogOpen,completeFeedbackDialogOpen,comments, curVideo} = this.state;
     const {curCoach} = this.props;
@@ -185,6 +189,14 @@ export default class PlayerAnnotationController extends Component {
             color="primary"
             onClick={this.handleOpenCompleteFeedbackDialog}>
             Submit Feedback and Notify Student
+          </Button>
+        </Grid>
+        <Grid container item xs={12} justify="flex-end">
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={this.handleSendNotification}>
+            Test Send Notification
           </Button>
         </Grid>
       </div>
