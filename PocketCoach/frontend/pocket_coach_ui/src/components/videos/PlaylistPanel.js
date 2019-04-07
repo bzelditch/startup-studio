@@ -1,19 +1,30 @@
 import React, {Component, Fragment} from 'react';
 import {Card, CardHeader, Grid, CardContent, Divider, List, ListItem, ListItemText,ListItemAvatar,Avatar,Typography} from "@material-ui/core";
 import { withStyles } from '@material-ui/core/styles';
+// import './playlistpanel.css';
 
 
-const styles = theme => ({
-  card: {
-    backgroundColor: theme.palette.grey[200],
+const styles = {
+  root: {
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    backgroundcolor: 'firebrick',
+    borderRadius: 3,
+    border: 0,
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
   },
-  cardHeaderRoot: {
-    backgroundColor: theme.palette.primary.main,
-  },
-  cardHeaderTitle: {
-    color: theme.palette.common.white,
-  },
-});
+  // card: {
+  //   backgroundColor: theme.palette.grey[200],
+  // },
+  // cardHeaderRoot: {
+  //   backgroundColor: theme.palette.primary.main,
+  // },
+  // cardHeaderTitle: {
+  //   color: theme.palette.common.white,
+  // },
+};
 
 
 class PlaylistPanel extends Component {
@@ -36,6 +47,7 @@ class PlaylistPanel extends Component {
     const curVideoIndex = this.getCurVideoIndex(playlist, curVideo.videoId)
     return (
       <Fragment>
+      <div className = "cardTitle">
         <Card className={classes.card}>
           <CardHeader
             classes={{
@@ -77,11 +89,10 @@ class PlaylistPanel extends Component {
             </List>
           </CardContent>
         </Card>
+        </div>
       </Fragment>
     )
   }
 };
 
 export default withStyles(styles)(PlaylistPanel);
-
-
