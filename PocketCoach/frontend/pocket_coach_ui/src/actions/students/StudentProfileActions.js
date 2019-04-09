@@ -7,3 +7,11 @@ export default createStudentProfileAction(profile) {
         profile: profile
     });
 }
+
+export default updateStudentProfileAction(studentId, videoId) {
+    dispatcher.dispatch({
+        type: StudentProfileConstants.UPDATE_STUDENT_PROFILE,
+        studentId: studentId,
+        videoId: videoId
+    });
+}

@@ -1,6 +1,6 @@
 import {EventEmitter} from "events";
-import dispatcher from "../../dispatcher"
-import * as StudentProfileActions from '../../actions/students/StudentProfileActions'
+import dispatcher from "../../dispatcher";
+import * as StudentProfileActions from '../../actions/students/StudentProfileActions';
 
 class StudentProfilesStore extends EventEmitter {
     constructor () {
@@ -45,10 +45,13 @@ class StudentProfilesStore extends EventEmitter {
         this.emit("newStudentProfileAdded")
     }
 
+    
     handleActions(action) {
         switch(action.type) {
             case StudentProfileActions.CREATE_STUDENT_PROFILE:
                 this.createStudentProfile(action.profile)
+            case StudentProfileActions.UPDATE_STUDENT_PROFILE:
+                this.updateStudentProfile(action.studentId, action.videoId)
         }
     }
 
