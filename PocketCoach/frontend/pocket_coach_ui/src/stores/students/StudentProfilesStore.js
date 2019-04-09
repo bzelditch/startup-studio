@@ -24,6 +24,16 @@ class StudentProfilesStore extends EventEmitter {
         return this.studentProfiles;
     }
 
+    getStudentById(studentId) {
+        var student = this.studentProfiles.find(s => s.studentId === studentId);
+        return student;
+    }
+
+    updateStudentProfile(studentId, videoId) {
+        var profile = this.getStudentById(studentId);
+        profile.studentVideos.push(videoId);
+    }
+
     /* TBD on how to handle this. Not sure if we should pass in inputs differently */
     createStudentProfile(profile) {
         const studentId = this.nextStudentId;

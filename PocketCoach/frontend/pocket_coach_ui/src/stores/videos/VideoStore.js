@@ -65,6 +65,14 @@ class VideoStore extends EventEmitter {
     this.nextVideoId = this.videoDatabase.length + 1;
   }
 
+  insertVideo(video) {
+    this.videoDatabase.push(video);
+  }
+
+  getNumVideos() {
+    return this.videoDatabase.length;
+  }
+
   getAll() {
     return this.videoDatabase;
   }

@@ -3,6 +3,7 @@ import { Typography, Grid, Card, Link,CardHeader,Toolbar} from '@material-ui/cor
 import {Breadcrumbs} from '@material-ui/lab';
 import { withStyles } from '@material-ui/core/styles';
 import {StudentProfileLeftPane, StudentProfileRightPane} from '../../components/';
+import UploadVideo from '../../components/students/UploadVideo'
 
 
 const styles = {
@@ -49,6 +50,7 @@ class StudentProfile extends React.Component {
           <StudentProfileLeftPane userName={students[0].studentName} 
             userHeadshot={students[0].studentHeadshot} userInformation={students[0].studentInformation}/>
         </Grid>
+        <UploadVideo/>
       </Grid>
     )
   }

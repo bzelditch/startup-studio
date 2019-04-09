@@ -3,6 +3,15 @@ import {Card, CardHeader, TextField, Button} from '@material-ui/core';
 import VideoStore from "../../stores/videos/VideoStore";
 import StudentProfilesStore from "../../stores/students/StudentProfilesStore";
 
+function getCurrentDatePlusDays(days) {
+    const options = {
+      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+    };
+    const currentDate = new Date();
+    currentDate.setDate(currentDate.getDate() + days);
+    return currentDate.toLocaleDateString('en-US', options);
+  }
+
 
 /* Component for users to upload videos when creating a project   */
 
@@ -10,6 +19,7 @@ class UploadVideo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            userId : 1, /* Should be passed in some way...  */
             projectTitle: '',
             projectDesc: '',
             projectVideo: '',
@@ -30,8 +40,30 @@ class UploadVideo extends React.Component {
         });
     }
 
-    createProjectHandler = () => {
+    createVideoObj = () => {
+        return {
+            videoId: VideoStore.getNumVideos() + 1,
+            studentId: this.state.userId, /*  How to get this? */
+            coachIds: [],
+            title: this.state.videoTitle,
+            icon: 3, /* Uhhhh  */
+            createTimestamp: getCurrentDatePlusDays(0),
+            numFeedback: 0,
+            videoPath: require(this.state.projectVideo), /* I think  */
+            goals: this.state.projectGoals
+        };
+    }
 
+    createProjectHandler = () => {
+        /* Insert the user's video in the VideoStore  */
+        var videoObj = this.createVideoObj();
+        VideoStore.insertVideo(videoObj);
+
+        /*  Update the student's information in the StudentProfile store   
+            All we're doing here is appending the video onto the student's
+            video list. Really we should store a list of projects per student
+            and update that list with a project object (just like the VideoStore) */
+        StudentProfilesStore.updateStudentProfile(this.state.userId, VideoStore.getNumVideos());
     }
 
     render() {
