@@ -1,9 +1,11 @@
 import {EventEmitter} from "events";
 import dispatcher from "../../dispatcher";
 import * as StudentProfileActions from '../../actions/students/StudentProfileActions';
+import * as StudentProfileConstants from '../../actions/students/StudentProfileConstants';
 
 class StudentProfilesStore extends EventEmitter {
-    constructor () {
+    constructor (props) {
+        super(props);
         this.studentProfiles = [
             {
                 studentId: 1,
@@ -32,6 +34,7 @@ class StudentProfilesStore extends EventEmitter {
     updateStudentProfile(studentId, videoId) {
         var profile = this.getStudentById(studentId);
         profile.studentVideos.push(videoId);
+        this.emit("studentProfileUpdated");
     }
 
     /* TBD on how to handle this. Not sure if we should pass in inputs differently */
@@ -48,13 +51,12 @@ class StudentProfilesStore extends EventEmitter {
     
     handleActions(action) {
         switch(action.type) {
-            case StudentProfileActions.CREATE_STUDENT_PROFILE:
+            case StudentProfileConstants.CREATE_STUDENT_PROFILE:
                 this.createStudentProfile(action.profile)
-            case StudentProfileActions.UPDATE_STUDENT_PROFILE:
+            case StudentProfileConstants.UPDATE_STUDENT_PROFILE:
                 this.updateStudentProfile(action.studentId, action.videoId)
         }
     }
-
 }
 
 const studentProfilesStore = new StudentProfilesStore;

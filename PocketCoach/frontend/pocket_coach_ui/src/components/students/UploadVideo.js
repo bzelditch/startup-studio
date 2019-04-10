@@ -26,6 +26,10 @@ class UploadVideo extends React.Component {
             videoTitle: '',
             projectGoals: ''
         };
+        this.createVideoObj = this.createVideoObj.bind(this);
+        this.createProjectHandler = this.createProjectHandler.bind(this);
+        this.textInputHandler = this.textInputHandler.bind(this);
+        this.uploadVideoHandler = this.uploadVideoHandler.bind(this);
     }
 
     textInputHandler = field => e => {
