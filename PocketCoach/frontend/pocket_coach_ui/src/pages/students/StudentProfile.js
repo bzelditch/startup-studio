@@ -50,7 +50,6 @@ class StudentProfile extends React.Component {
           <StudentProfileLeftPane userName={students[0].studentName} 
             userHeadshot={students[0].studentHeadshot} userInformation={students[0].studentInformation}/>
         </Grid>
-        <UploadVideo/>
       </Grid>
     )
   }
