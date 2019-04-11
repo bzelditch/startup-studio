@@ -18,6 +18,9 @@ const styles = {
     },
   },
   checked: {},
+  label: {
+    fontSize: 14
+  },
 };
 
 class PresentationCheckbox extends React.Component {

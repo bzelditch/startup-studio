@@ -92,4 +92,3 @@ class CoachStore extends EventEmitter {
 const coachStore = new CoachStore;
 dispatcher.register(coachStore.handleActions.bind(coachStore));
 export default coachStore;
-

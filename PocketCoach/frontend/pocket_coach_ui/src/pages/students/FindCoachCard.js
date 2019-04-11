@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import PresentationCheckbox from './PresentationCheckbox.js'
 import FeedbackTimeCheckbox from './FeedbackTimeCheckbox.js'
 import GoalChips from  './GoalChips.js'
+import Divider from '@material-ui/core/Divider';
 
 const styles = {
   card: {
@@ -30,23 +31,29 @@ function FindCoachCard(props) {
     <Card className={classes.card}>
       <CardContent>
         <Typography color="textPrimary" variant = "h3" gutterBottom>
-          Tell Us What You Are Looking For...
+          <span>Tell Us What You Are Looking For...</span>
         </Typography>
-        <Typography color="textPrimary" variant = "h4" gutterBottom>
-          'What Type of Presentation is This?'
+        ------------------------------------------------------------
+        <span> </span>
+        <Typography color="textPrimary" variant = "h5" gutterBottom>
+          <span>'What Type of Presentation is This?'</span>
         </Typography>
         <PresentationCheckbox/>
-        <Typography color="textPrimary" variant = "h4" gutterBottom>
-          'What Goals are You Working On?'
+        ------------------------------------------------------------
+        <span> </span>
+        <Typography color="textPrimary" variant = "h5" gutterBottom>
+          <span>'What Goals are You Working On?'</span>
           <GoalChips/>
         </Typography>
-        <Typography color="textPrimary" variant = "h4" gutterBottom>
-          'What is your Preferred Response Time?'
+        ------------------------------------------------------------
+        <span> </span>
+        <Typography color="textPrimary" variant = "h5" gutterBottom>
+          <span>'What is your Preferred Response Time?'</span>
         </Typography>
         <FeedbackTimeCheckbox/>
       </CardContent>
       <CardActions>
-        <Button size="large" variant="contained" color= "secondary">Search</Button>
+        <Button size="large" variant="contained" color= "secondary" target='MySessions.js'>Search</Button>
       </CardActions>
     </Card>
   );
