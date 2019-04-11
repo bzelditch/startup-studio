@@ -9,6 +9,5 @@ export default props => (
   <Typography variant="h1">
     <FindCoachStepper/>
     <FindCoachCard/>
-
   </Typography>
 );

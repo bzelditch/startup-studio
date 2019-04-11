@@ -23,6 +23,8 @@ function handleDelete() {
 
 function handleClick() {
   alert('You clicked the Chip.');
+  // this.label = "Clicked"
+  // this.color = "primary"
 }
 
 function GoalChips(props) {
@@ -30,14 +32,42 @@ function GoalChips(props) {
   return (
     <div className={classes.root}>
       <Chip
+        label="Accent"
         label="Basic Chip"
         className={classes.chip}
         onClick={handleClick}
       />
       <Chip
         avatar={<Avatar>MB</Avatar>}
+        label="Body Language"
+        clickable
+        className={classes.chip}
+        color="primary"
+        onDelete={handleDelete}
+        deleteIcon={<DoneIcon />}
+      />
+      <Chip
+        avatar={<Avatar>MB</Avatar>}
+        label="Content"
+        clickable
+        className={classes.chip}
+        onDelete={handleDelete}
+        deleteIcon={<DoneIcon />}
+      />
+      <Chip
+        avatar={<Avatar>MB</Avatar>}
+        label="Confidence"
+        clickable
+        className={classes.chip}
+        onDelete={handleDelete}
+        deleteIcon={<DoneIcon />}
+      />
+      <Chip
+        avatar={<Avatar>MB</Avatar>}
+        label="Engagement"
+        clickable
+        className={classes.chip}
         label="Clickable Chip"
-
         className={classes.chip}
      />
       <Chip
@@ -50,6 +80,8 @@ function GoalChips(props) {
         deleteIcon={<DoneIcon />}
       />
       <Chip
+        avatar={<Avatar>MB</Avatar>}
+        label="Expressions"
         icon={<FaceIcon />}
         label="Primary Clickable Chip"
         clickable
@@ -59,6 +91,61 @@ function GoalChips(props) {
         deleteIcon={<DoneIcon />}
       />
       <Chip
+        avatar={<Avatar>MB</Avatar>}
+        label="Filler Words"
+        clickable
+        className={classes.chip}
+        onDelete={handleDelete}
+        deleteIcon={<DoneIcon />}
+      />
+      <Chip
+        avatar={<Avatar>MB</Avatar>}
+        label="Gestures"
+        clickable
+        className={classes.chip}
+        onDelete={handleDelete}
+        deleteIcon={<DoneIcon />}
+      />
+      <Chip
+        avatar={<Avatar>MB</Avatar>}
+        label="Pacing"
+        clickable
+        className={classes.chip}
+        onDelete={handleDelete}
+        deleteIcon={<DoneIcon />}
+      />
+      <Chip
+        avatar={<Avatar>MB</Avatar>}
+        label="Posture"
+        clickable
+        className={classes.chip}
+        onDelete={handleDelete}
+        deleteIcon={<DoneIcon />}
+      />
+      <Chip
+        avatar={<Avatar>MB</Avatar>}
+        label="Presence"
+        clickable
+        className={classes.chip}
+        onDelete={handleDelete}
+        deleteIcon={<DoneIcon />}
+      />
+      <Chip
+        avatar={<Avatar>MB</Avatar>}
+        label="Projection"
+        clickable
+        className={classes.chip}
+        onDelete={handleDelete}
+        deleteIcon={<DoneIcon />}
+      />
+      <Chip
+        avatar={<Avatar>MB</Avatar>}
+        label="Tone"
+        clickable
+        className={classes.chip}
+        color="primary"
+        onDelete={handleDelete}
+        deleteIcon={<DoneIcon />}
         label="Deletable Primary Chip"
         onDelete={handleDelete}
         className={classes.chip}

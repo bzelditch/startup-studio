@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import PresentationCheckbox from './PresentationCheckbox.js'
 import FeedbackTimeCheckbox from './FeedbackTimeCheckbox.js'
 import GoalChips from  './GoalChips.js'
+import Divider from '@material-ui/core/Divider';
 
 const styles = {
   card: {
@@ -30,6 +31,25 @@ function FindCoachCard(props) {
     <Card className={classes.card}>
       <CardContent>
         <Typography color="textPrimary" variant = "h3" gutterBottom>
+          <span>Tell Us What You Are Looking For...</span>
+        </Typography>
+        ------------------------------------------------------------
+        <span> </span>
+        <Typography color="textPrimary" variant = "h5" gutterBottom>
+          <span>'What Type of Presentation is This?'</span>
+        </Typography>
+        <PresentationCheckbox/>
+        ------------------------------------------------------------
+        <span> </span>
+        <Typography color="textPrimary" variant = "h5" gutterBottom>
+          <span>'What Goals are You Working On?'</span>
+          <GoalChips/>
+        </Typography>
+        ------------------------------------------------------------
+        <span> </span>
+        <Typography color="textPrimary" variant = "h5" gutterBottom>
+          <span>'What is your Preferred Response Time?'</span>
+=======
           Tell Us What You Are Looking For...
         </Typography>
         <Typography color="textPrimary" variant = "h4" gutterBottom>
@@ -46,6 +66,8 @@ function FindCoachCard(props) {
         <FeedbackTimeCheckbox/>
       </CardContent>
       <CardActions>
+        <Button size="large" variant="contained" color= "secondary" target='MySessions.js'>Search</Button>
+=======
         <Button size="large" variant="contained" color= "secondary">Search</Button>
       </CardActions>
     </Card>

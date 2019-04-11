@@ -29,6 +29,9 @@ function getSteps() {
 function getStepContent(step) {
   switch (step) {
     case 0:
+      return 'Upload Video';
+    case 1:
+      return 'Preferences & Goals';
       /*return 'Upload Video';*/
       return (
         <div>
