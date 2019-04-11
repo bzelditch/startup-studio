@@ -3,6 +3,7 @@ import { Typography, Grid, Card, Link,CardHeader,Toolbar} from '@material-ui/cor
 import {Breadcrumbs} from '@material-ui/lab';
 import { withStyles } from '@material-ui/core/styles';
 import {StudentProfileLeftPane, StudentProfileRightPane} from '../../components/';
+import UploadVideo from '../../components/students/UploadVideo'
 
 
 const styles = {

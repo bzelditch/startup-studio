@@ -6,6 +6,8 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import UploadVideo from '../../components/students/UploadVideo';
+import FindCoachCard from './FindCoachCard';
 
 const styles = theme => ({
   root: {
@@ -30,6 +32,19 @@ function getStepContent(step) {
       return 'Upload Video';
     case 1:
       return 'Preferences & Goals';
+      /*return 'Upload Video';*/
+      return (
+        <div>
+          <UploadVideo/>
+        </div>
+      );
+    case 1:
+      /*return 'Preferences & Goals';*/
+      return (
+        <div>
+          <FindCoachCard/>
+        </div>
+      );
     case 2:
       return 'Select Coach';
     default:
@@ -39,7 +54,7 @@ function getStepContent(step) {
 
 class FindCoachStepper extends React.Component {
   state = {
-    activeStep: 1,
+    activeStep: 0,
     skipped: new Set(),
   };
 

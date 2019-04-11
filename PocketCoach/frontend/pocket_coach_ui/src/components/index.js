@@ -29,5 +29,5 @@ export {
   CommentsTimeline,
   PlaylistPanel,
   RecommendedCoachesPanel,
-  StudentProfileLeftPane
+  StudentProfileLeftPane,
 };

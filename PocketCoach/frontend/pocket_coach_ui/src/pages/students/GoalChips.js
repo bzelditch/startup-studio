@@ -33,6 +33,7 @@ function GoalChips(props) {
     <div className={classes.root}>
       <Chip
         label="Accent"
+        label="Basic Chip"
         className={classes.chip}
         onClick={handleClick}
       />
@@ -66,12 +67,23 @@ function GoalChips(props) {
         label="Engagement"
         clickable
         className={classes.chip}
+        label="Clickable Chip"
+        className={classes.chip}
+     />
+      <Chip
+        avatar={<Avatar>MB</Avatar>}
+        label="Primary Clickable Chip"
+        clickable
+        className={classes.chip}
+        color="primary"
         onDelete={handleDelete}
         deleteIcon={<DoneIcon />}
       />
       <Chip
         avatar={<Avatar>MB</Avatar>}
         label="Expressions"
+        icon={<FaceIcon />}
+        label="Primary Clickable Chip"
         clickable
         className={classes.chip}
         color="primary"
@@ -134,6 +146,28 @@ function GoalChips(props) {
         color="primary"
         onDelete={handleDelete}
         deleteIcon={<DoneIcon />}
+        label="Deletable Primary Chip"
+        onDelete={handleDelete}
+        className={classes.chip}
+        color="primary"
+      />
+      <Chip
+        avatar={
+          <Avatar>
+            <FaceIcon />
+          </Avatar>
+        }
+        label="Deletable Secondary Chip"
+        onDelete={handleDelete}
+        className={classes.chip}
+        color="secondary"
+      />
+      <Chip
+        icon={<FaceIcon />}
+        label="Deletable Secondary Chip"
+        onDelete={handleDelete}
+        className={classes.chip}
+        color="secondary"
       />
     </div>
   );

@@ -49,11 +49,26 @@ function FindCoachCard(props) {
         <span> </span>
         <Typography color="textPrimary" variant = "h5" gutterBottom>
           <span>'What is your Preferred Response Time?'</span>
+=======
+          Tell Us What You Are Looking For...
+        </Typography>
+        <Typography color="textPrimary" variant = "h4" gutterBottom>
+          'What Type of Presentation is This?'
+        </Typography>
+        <PresentationCheckbox/>
+        <Typography color="textPrimary" variant = "h4" gutterBottom>
+          'What Goals are You Working On?'
+          <GoalChips/>
+        </Typography>
+        <Typography color="textPrimary" variant = "h4" gutterBottom>
+          'What is your Preferred Response Time?'
         </Typography>
         <FeedbackTimeCheckbox/>
       </CardContent>
       <CardActions>
         <Button size="large" variant="contained" color= "secondary" target='MySessions.js'>Search</Button>
+=======
+        <Button size="large" variant="contained" color= "secondary">Search</Button>
       </CardActions>
     </Card>
   );
