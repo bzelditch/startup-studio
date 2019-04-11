@@ -1,0 +1,52 @@
+.Headshot {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 3px;
+}
+
+.StudentInformationSection {
+    background-color: lightgrey;
+    padding-bottom: 10px;
+}
+
+.StudentHeadshotSection {
+    background-color: lightgrey;
+    padding-bottom: 10px;
+}
+
+.StudentName {
+    font-family: Didact Gothic;
+    font-size: 30px;
+}
+
+.StudentTextInformation {
+    font-family: Didact Gothic;
+    font-size: 15px;
+}
+.CreateNewProjectButton {
+    background-color: lightblue;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: darkblue;
+    color: white;
+    font-weight: bold;
+    width: 150px;
+    height: 30px;
+}
+
+.UploadVideoButton {
+    background-color: darkblue;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: darkblue;
+    color: white;
+    font-weight: bold;
+    width: 150px;
+    height: 30px;
+}
