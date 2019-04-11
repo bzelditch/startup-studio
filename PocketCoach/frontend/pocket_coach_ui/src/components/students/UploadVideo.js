@@ -120,7 +120,8 @@ class UploadVideo extends React.Component {
                 <br/>
 
                 <Button variant="contained" color="primary" 
-                onClick={this.createProjectHandler}>
+                /*onClick={this.createProjectHandler}>*/
+                onClick={this.props.nextHandler}>
                 Create Project
                 </Button>
 

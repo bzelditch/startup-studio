@@ -26,20 +26,15 @@ function getSteps() {
   return ['Upload Video', 'Preferences & Goals', 'Select Coach'];
 }
 
-function getStepContent(step) {
+/*function getStepContent(step) {
   switch (step) {
     case 0:
-      return 'Upload Video';
-    case 1:
-      return 'Preferences & Goals';
-      /*return 'Upload Video';*/
       return (
         <div>
-          <UploadVideo/>
+          <UploadVideo nextHandler={handleNext}/>
         </div>
       );
     case 1:
-      /*return 'Preferences & Goals';*/
       return (
         <div>
           <FindCoachCard/>
@@ -50,13 +45,41 @@ function getStepContent(step) {
     default:
       return 'Unknown step';
   }
-}
+}*/
 
 class FindCoachStepper extends React.Component {
+
+  constructor(props){
+    super(props);
+    this.handleNext = this.handleNext.bind(this);
+  };
+
   state = {
     activeStep: 0,
     skipped: new Set(),
   };
+
+  getStepContent(step) {
+    switch (step) {
+      case 0:
+        return (
+          <div>
+            <UploadVideo nextHandler={this.handleNext}/>
+          </div>
+        );
+      case 1:
+        /*return 'Preferences & Goals';*/
+        return (
+          <div>
+            <FindCoachCard/>
+          </div>
+        );
+      case 2:
+        return 'Select Coach';
+      default:
+        return 'Unknown step';
+    }
+  }
 
   isStepOptional = step => step === 1;
 
@@ -143,7 +166,7 @@ class FindCoachStepper extends React.Component {
             </div>
           ) : (
             <div>
-              <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+              <Typography className={classes.instructions}>{this.getStepContent(activeStep)}</Typography>
               <div>
                 <Button
                   disabled={activeStep === 0}

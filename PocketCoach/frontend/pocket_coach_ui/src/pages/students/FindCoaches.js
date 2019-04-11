@@ -8,7 +8,5 @@ import FindCoachCard from  './FindCoachCard.js'
 export default props => (
   <Typography variant="h1">
     <FindCoachStepper/>
-    <FindCoachCard/>
-
   </Typography>
 );
