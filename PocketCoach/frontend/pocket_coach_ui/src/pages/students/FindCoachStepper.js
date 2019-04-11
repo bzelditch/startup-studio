@@ -51,7 +51,7 @@ class FindCoachStepper extends React.Component {
 
   constructor(props){
     super(props);
-    this.handleNext = this.handleNext.bind(this);
+    /*this.handleNext = this.handleNext.bind(this);*/
   };
 
   state = {

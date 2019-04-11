@@ -18,6 +18,7 @@ function getCurrentDatePlusDays(days) {
 class UploadVideo extends React.Component {
     constructor(props) {
         super(props);
+        console.log("Video Constructor");
         this.state = {
             userId : 1, /* Should be passed in some way...  */
             projectTitle: '',
@@ -60,14 +61,16 @@ class UploadVideo extends React.Component {
 
     createProjectHandler = () => {
         /* Insert the user's video in the VideoStore  */
-        var videoObj = this.createVideoObj();
-        VideoStore.insertVideo(videoObj);
+
+        //var videoObj = this.createVideoObj();
+        //VideoStore.insertVideo(videoObj);
 
         /*  Update the student's information in the StudentProfile store   
             All we're doing here is appending the video onto the student's
             video list. Really we should store a list of projects per student
             and update that list with a project object (just like the VideoStore) */
         StudentProfilesStore.updateStudentProfile(this.state.userId, VideoStore.getNumVideos());
+        this.props.nextHandler();
     }
 
     render() {
@@ -120,8 +123,7 @@ class UploadVideo extends React.Component {
                 <br/>
 
                 <Button variant="contained" color="primary" 
-                /*onClick={this.createProjectHandler}>*/
-                onClick={this.props.nextHandler}>
+                onClick={this.createProjectHandler}>
                 Create Project
                 </Button>
 
