@@ -6,6 +6,7 @@ import * as CommentActions from "../../actions/videos/CommentActions";
 import { CommentCard, FeedbackCard, CommentsTimeline, CreateAnnotationDialog, CompleteFeedbackDialog } from '../../components';
 import CommentsStore from "../../stores/videos/CommentStore";
 import FeedbackStore from "../../stores/videos/FeedbackStore";
+import axios from 'axios';
 
 export default class PlayerAnnotationController extends Component {
   constructor(props) {
@@ -95,7 +96,13 @@ export default class PlayerAnnotationController extends Component {
   }
 
   handleSendNotification = () => {
-    console.log("handleSendNotification")
+    console.log("handleSendNotification sending")
+    axios.get('http://127.0.0.1:8000/api/notify/')
+      .then(res => {
+        console.log(res.data)
+      })
+
+
   };
 
   render() {
