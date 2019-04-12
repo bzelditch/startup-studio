@@ -101,8 +101,6 @@ export default class PlayerAnnotationController extends Component {
       .then(res => {
         console.log(res.data)
       })
-
-
   };
 
   render() {
