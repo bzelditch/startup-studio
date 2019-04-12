@@ -131,14 +131,14 @@ class AnnotationForm extends Component {
         <form className={classes.form}>
           <Grid container spacing={24} >
             <Grid item xs={12}>
-              <Paper position="static">
+              <Paper position="static" className={classes.tabsPaper}>
                 <Tabs
                   variant="fullWidth"
                   value={selectedTab}
                   onChange={this.handleTabChange}
                   indicatorColor="primary"
                   textColor="primary"
-                  className={classes.tabsPaper}>
+                  >
                   <Tab icon={<PencilIcon />} label="Written feedback" />
                   <Tab icon={<MicIcon />} label="Audio feedback"/>
                   <Tab icon={<VideoLibraryIcon />} label="Sample videos"/>
@@ -224,4 +224,4 @@ class AnnotationForm extends Component {
   }
 };
 
-export default withStyles(styles, { withTheme: true })(AnnotationForm);
+export default withStyles(styles)(AnnotationForm);
