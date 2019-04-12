@@ -54,7 +54,6 @@ class CoachProfileView extends Component {
             value={location.pathname}
             indicatorColor="primary"
             textColor="primary"
-            tabItemContainerStyle={{}}
             >
             {coachTabs.map(tab =>
               <Tab className={classes.tabs} key={tab.name} label={tab.name} value={tab.href} component={Link} to={tab.href} {...this.props}/>
