@@ -24,11 +24,14 @@ const styles = {
 class CoachInformation extends React.Component {
     constructor (props) {
         super(props);
+        console.log(props)
         this.state = {
             userName: props.userName,
             userHeadshot: props.userHeadshot,
-            userInformation: props.userInformation
+            userInformation: props.userInformation,
+            finalVideoLink: props.finalVideoLink
         }
+
     }
 
   handleSendNotification = () => {
@@ -40,13 +43,15 @@ class CoachInformation extends React.Component {
   };
 
     render () {
+      console.log(this.props.userName)
+      console.log(this.state.finalVideoLink)
         return (
             <Card className={this.props.classes.coachInformation}>
-                <Grid container spacing={24}>
-                    <Grid item xs={4}>
+                <Grid container spacing={12}>
+                    <Grid item xs={3}>
                         <Avatar src={this.props.userHeadshot} alt={this.props.userName} className={this.props.classes.bigAvatar}/>
                     </Grid>
-                    <Grid item xs={8}>
+                    <Grid item xs={3}>
                         <CardHeader title={this.props.userName}/> {/* Should be passed in via props*/}
                         <CardContent>
                             <Typography>
@@ -73,13 +78,26 @@ class CoachInformation extends React.Component {
                             </div>
                             <br>
                             </br>
+                            </CardContent>
+                    </Grid>
+                    <Grid item container xs={4} alignItems= 'center'>
+                      <iframe src= {'https://www.youtube.com/embed/' + this.props.finalVideoLink}
+                            frameBorder='0'
+                            allow='autoplay; encrypted-media'
+                            allowFullScreen
+                            title='video'
+                      />
+                    </Grid>
+                    <Grid item container xs={2} alignItems= 'center'>
+                            <Typography variant= "h5" color = 'primary'>
+                                $99 for 3 Sessions
+                            </Typography>
                             <Button
                                 variant="contained"
-                                color="primary"
+                                color="secondary">
                                 onClick={this.handleSendNotification}>
                                 Book Now
                             </Button>
-                        </CardContent>
                     </Grid>
                 </Grid>
             </Card>

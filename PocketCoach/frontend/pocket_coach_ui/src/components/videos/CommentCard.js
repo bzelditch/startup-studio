@@ -80,7 +80,7 @@ class CommentCard extends React.Component {
 
         {comment.videos.map((video) =>
           <Grid container spacing={24} >
-            <Grid item xs={4}>
+            <Grid item container xs={4} alignItems= 'center'>
               <iframe src={'https://www.youtube.com/embed/' + video.youtubeId}
                       frameBorder='0'
                       allow='autoplay; encrypted-media'
