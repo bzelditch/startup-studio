@@ -7,7 +7,7 @@ import { MuiThemeProvider, createMuiTheme, creat } from '@material-ui/core/style
 // import createPalette from 'material-ui/styles/palette';
 // import createTypography from 'material-ui/styles/typography';
 
-const theme = createMuiTheme({
+let theme = createMuiTheme({
   palette: {
     primary: {
       main: "#E9353F",
@@ -15,30 +15,58 @@ const theme = createMuiTheme({
       dark: "#AF0018",
     },
     secondary: {
-      main: "#0070B5",
-      light: "#569EE8",
+      main: "#004585",
+      light: "#0070B5",
       dark: "#004585",
     },
-    extra: {
-      navBlack: "#010101",
+    navBlack: "#0A0707",
+    background: {
+      default: "#FFFCFC",
+      paper: "#eeeeee",
     }
   },
   typography: {
-    fontFamily: [
-      'Open Sans',
-      'Didact Gothic',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
+    useNextVariants: true,
+    fontFamily: "'Open Sans', sans-serif",
+    fontFamilySecondary: "'Didact Gothic', sans-serif",
+    fontSize: 18,
   },
 });
+
+theme = {
+  ...theme,
+  typography: {
+    ...theme.typography,
+    h4: {
+      ...theme.typography.h4,
+      fontFamily: theme.typography.fontFamilySecondary,
+    }
+  },
+  overrides: {
+    MuiButton: {
+      label: {
+        textTransform: 'initial',
+        fontWeight: 600,
+      },
+      root: {
+        marginTop: theme.spacing.unit,
+        marginBottom: theme.spacing.unit*2,
+      },
+    },
+    MuiTabs: {
+      indicator: {
+        height: 5,
+      },
+    },
+    MuiTab: {
+      root: {
+        textTransform: 'initial',
+        fontWeight: 600,
+        fontSize: 25,
+      },
+    },
+  }
+};
 console.log(theme)
 
 class App extends Component {

@@ -28,7 +28,7 @@ class CommentsTimeline extends React.Component {
           <IconButton onClick={this.props.handleCommentTimelinePress(comment)} className={classes.button}>
             {CoachStore.getCoachAvatarById(comment.coachId)}
           </IconButton>
-          <Typography variant="h6"> {comment.videoTimestamp} s</Typography>
+          <Typography variant="h6"> {comment.videoTimestamp.toFixed(2)} s</Typography>
           </Grid>
         )}
         </Grid>
