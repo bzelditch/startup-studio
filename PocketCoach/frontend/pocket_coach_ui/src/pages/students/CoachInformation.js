@@ -6,20 +6,20 @@ import { createRequireFromPath } from 'module';
 import { grey } from '@material-ui/core/colors';
 import axios from "axios";
 
-const styles = {
+const styles = theme => ({
     smallAvatar : {
         margin : 10
     },
     bigAvatar : {
         margin: 10,
-        width: 200,
-        height: 200,
+        width: 150,
+        height: 150,
     },
     /* Can modify the styling later */
     studentInformation : {
         backgroundColor: 'lightgrey'
     }
-}
+});
 
 class CoachInformation extends React.Component {
     constructor (props) {
@@ -29,13 +29,17 @@ class CoachInformation extends React.Component {
             userName: props.userName,
             userHeadshot: props.userHeadshot,
             userInformation: props.userInformation,
-            finalVideoLink: props.finalVideoLink
+            finalVideoLink: props.finalVideoLink,
+            clicked: false
         }
 
     }
 
   handleSendNotification = () => {
     console.log("handleSendNotification sending")
+    this.setState({
+        clicked: !this.state.clicked
+    });
     axios.get('http://127.0.0.1:8000/api/notify/')
       .then(res => {
         console.log(res.data)
@@ -47,11 +51,12 @@ class CoachInformation extends React.Component {
       console.log(this.state.finalVideoLink)
         return (
             <Card className={this.props.classes.coachInformation}>
+                <CardContent>
                 <Grid container spacing={12}>
-                    <Grid item xs={3}>
+                    <Grid item xs={2}>
                         <Avatar src={this.props.userHeadshot} alt={this.props.userName} className={this.props.classes.bigAvatar}/>
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid item xs={4}>
                         <CardHeader title={this.props.userName}/> {/* Should be passed in via props*/}
                         <CardContent>
                             <Typography>
@@ -88,18 +93,21 @@ class CoachInformation extends React.Component {
                             title='video'
                       />
                     </Grid>
-                    <Grid item container xs={2} alignItems= 'center'>
-                            <Typography variant= "h5" color = 'primary'>
+                    <Grid item container xs={2} >
+                        <Grid item>
+                            <Typography variant= "subtitle2" color = 'primary'>
                                 $99 for 3 Sessions
                             </Typography>
                             <Button
                                 variant="contained"
-                                color="secondary">
+                                color={this.state.clicked ? "primary" : "secondary"}
                                 onClick={this.handleSendNotification}>
                                 Book Now
                             </Button>
+                        </Grid>
                     </Grid>
                 </Grid>
+                </CardContent>
             </Card>
         )
     };

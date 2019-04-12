@@ -68,7 +68,7 @@ class CoachProfile extends React.Component {
       <Grid container spacing={24} className={classes.root}>
         <Grid item xs={12}>
           <Breadcrumbs separator="›" arial-label="Breadcrumb">
-            <Typography variant = "h3">
+            <Typography variant = "h5">
               Here Are Some Recommended Coaches for You...
             </Typography>
           </Breadcrumbs>

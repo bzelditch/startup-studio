@@ -36,7 +36,7 @@ class StudentProfileView extends Component {
   getStudentTabPage(tab) {
     switch (tab) {
       case 'Profile':
-        return <StudentProfile/>
+        return <StudentProfile createNewProjectHandler={this.handleStudentTabSelected}/>
       case 'Find Coaches':
         return <FindCoaches/>
       case 'My Sessions':

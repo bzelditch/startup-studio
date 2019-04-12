@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
 import StudentInformation from './StudentInformation';
 import {Paper, Button} from '@material-ui/core';
+import {Link, Route, Switch} from 'react-router-dom';
+import UploadVideo from './UploadVideo';
 
 class StudentProfileLeftPane extends React.Component {
     constructor(props){
@@ -8,6 +10,12 @@ class StudentProfileLeftPane extends React.Component {
         this.userName = props.userName;
         this.userHeadshot = props.userHeadshot;
         this.userInformation = props.userInformation
+        this.handler = this.handler.bind(this);
+    }
+
+    handler() {
+        console.log("Switching tabs")
+        this.props.createNewProjectHandler("Find Coaches");
     }
     render (props) {
         return (
@@ -21,8 +29,9 @@ class StudentProfileLeftPane extends React.Component {
 
                 <Button
                 variant="contained"
-                color="primary">
-                Create New Project
+                color="secondary"
+                onClick={this.handler}>
+                        Create New Project
                 </Button>
 
             </Fragment>

@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import UploadVideo from '../../components/students/UploadVideo';
 import FindCoachCard from './FindCoachCard';
+import MySessions from './MySessions';
 
 const styles = theme => ({
   root: {
@@ -25,27 +26,6 @@ const styles = theme => ({
 function getSteps() {
   return ['Upload Video', 'Preferences & Goals', 'Select Coach'];
 }
-
-/*function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return (
-        <div>
-          <UploadVideo nextHandler={handleNext}/>
-        </div>
-      );
-    case 1:
-      return (
-        <div>
-          <FindCoachCard/>
-        </div>
-      );
-    case 2:
-      return 'Select Coach';
-    default:
-      return 'Unknown step';
-  }
-}*/
 
 class FindCoachStepper extends React.Component {
 
@@ -71,11 +51,15 @@ class FindCoachStepper extends React.Component {
         /*return 'Preferences & Goals';*/
         return (
           <div>
-            <FindCoachCard/>
+            <FindCoachCard nextHandler={this.handleNext}/>
           </div>
         );
       case 2:
-        return 'Select Coach';
+        return (
+          <div>
+            <MySessions/>
+          </div>
+        );
       default:
         return 'Unknown step';
     }
@@ -167,33 +151,6 @@ class FindCoachStepper extends React.Component {
           ) : (
             <div>
               <Typography className={classes.instructions}>{this.getStepContent(activeStep)}</Typography>
-              <div>
-                <Button
-                  disabled={activeStep === 0}
-                  onClick={this.handleBack}
-                  className={classes.button}
-                >
-                  Back
-                </Button>
-                {this.isStepOptional(activeStep) && (
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={this.handleSkip}
-                    className={classes.button}
-                  >
-                    Skip
-                  </Button>
-                )}
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={this.handleNext}
-                  className={classes.button}
-                >
-                  {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                </Button>
-              </div>
             </div>
           )}
         </div>

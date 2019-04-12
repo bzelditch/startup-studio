@@ -5,6 +5,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
 import FaceIcon from '@material-ui/icons/Face';
 import DoneIcon from '@material-ui/icons/Done';
+import ToggleChip from './ToggleChip';
 
 const styles = theme => ({
   root: {
@@ -31,110 +32,30 @@ function GoalChips(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
-      <Chip
-        label="Accent"
-        className={classes.chip}
-        onClick={handleClick}
-      />
-      <Chip
-        avatar={<Avatar>MB</Avatar>}
-        label="Body Language"
-        clickable
-        className={classes.chip}
-        color="primary"
-        onDelete={handleDelete}
-        deleteIcon={<DoneIcon />}
-      />
-      <Chip
-        avatar={<Avatar>MB</Avatar>}
-        label="Content"
-        clickable
-        className={classes.chip}
-        onDelete={handleDelete}
-        deleteIcon={<DoneIcon />}
-      />
-      <Chip
-        avatar={<Avatar>MB</Avatar>}
-        label="Confidence"
-        clickable
-        className={classes.chip}
-        onDelete={handleDelete}
-        deleteIcon={<DoneIcon />}
-      />
-      <Chip
-        avatar={<Avatar>MB</Avatar>}
-        label="Engagement"
-        clickable
-        className={classes.chip}
-        onDelete={handleDelete}
-        deleteIcon={<DoneIcon />}
-      />
-      <Chip
-        avatar={<Avatar>MB</Avatar>}
-        label="Expressions"
-        clickable
-        className={classes.chip}
-        color="primary"
-        onDelete={handleDelete}
-        deleteIcon={<DoneIcon />}
-      />
-      <Chip
-        avatar={<Avatar>MB</Avatar>}
-        label="Filler Words"
-        clickable
-        className={classes.chip}
-        onDelete={handleDelete}
-        deleteIcon={<DoneIcon />}
-      />
-      <Chip
-        avatar={<Avatar>MB</Avatar>}
-        label="Gestures"
-        clickable
-        className={classes.chip}
-        onDelete={handleDelete}
-        deleteIcon={<DoneIcon />}
-      />
-      <Chip
-        avatar={<Avatar>MB</Avatar>}
-        label="Pacing"
-        clickable
-        className={classes.chip}
-        onDelete={handleDelete}
-        deleteIcon={<DoneIcon />}
-      />
-      <Chip
-        avatar={<Avatar>MB</Avatar>}
-        label="Posture"
-        clickable
-        className={classes.chip}
-        onDelete={handleDelete}
-        deleteIcon={<DoneIcon />}
-      />
-      <Chip
-        avatar={<Avatar>MB</Avatar>}
-        label="Presence"
-        clickable
-        className={classes.chip}
-        onDelete={handleDelete}
-        deleteIcon={<DoneIcon />}
-      />
-      <Chip
-        avatar={<Avatar>MB</Avatar>}
-        label="Projection"
-        clickable
-        className={classes.chip}
-        onDelete={handleDelete}
-        deleteIcon={<DoneIcon />}
-      />
-      <Chip
-        avatar={<Avatar>MB</Avatar>}
-        label="Tone"
-        clickable
-        className={classes.chip}
-        color="primary"
-        onDelete={handleDelete}
-        deleteIcon={<DoneIcon />}
-      />
+      
+      <ToggleChip buttonLabel="Accent"/>
+
+      <ToggleChip buttonLabel="Body Language"/>
+
+      <ToggleChip buttonLabel="Content"/>
+
+      <ToggleChip buttonLabel="Confidence"/>
+
+      <ToggleChip buttonLabel="Engagement"/>
+
+      <ToggleChip buttonLabel="Filler Words"/>
+
+      <ToggleChip buttonLabel="Gestures"/>
+
+      <ToggleChip buttonLabel="Pacing"/>
+
+      <ToggleChip buttonLabel="Posture"/>
+
+      <ToggleChip buttonLabel="Presence"/>
+
+      <ToggleChip buttonLabel="Projection"/>
+      
+      <ToggleChip buttonLabel="Tone"/>
     </div>
   );
 }

@@ -1,7 +1,8 @@
 import React from "react";
-import {Card, CardHeader, TextField, Button} from '@material-ui/core';
+import {Card, CardHeader, CardContent, TextField, Button} from '@material-ui/core';
 import VideoStore from "../../stores/videos/VideoStore";
 import StudentProfilesStore from "../../stores/students/StudentProfilesStore";
+import {Link, Route, Switch} from 'react-router-dom';
 
 function getCurrentDatePlusDays(days) {
     const options = {
@@ -46,7 +47,7 @@ class UploadVideo extends React.Component {
     }
 
     createVideoObj = () => {
-        return {
+        return({
             videoId: VideoStore.getNumVideos() + 1,
             studentId: this.state.userId, /*  How to get this? */
             coachIds: [],
@@ -56,14 +57,15 @@ class UploadVideo extends React.Component {
             numFeedback: 0,
             videoPath: require(this.state.projectVideo), /* I think  */
             goals: this.state.projectGoals
-        };
+        });
     }
 
     createProjectHandler = () => {
         /* Insert the user's video in the VideoStore  */
 
         //var videoObj = this.createVideoObj();
-        //VideoStore.insertVideo(videoObj);
+        var videoObj = {};
+        VideoStore.insertVideo(videoObj);
 
         /*  Update the student's information in the StudentProfile store   
             All we're doing here is appending the video onto the student's
@@ -77,8 +79,8 @@ class UploadVideo extends React.Component {
         return (
             <Card>
             <CardHeader title="Create a Project"/>
+            <CardContent>
             <form>
-
                 <TextField id="projectTitle" 
                 label="Project Name" 
                 helperText="Name your project."
@@ -99,7 +101,7 @@ class UploadVideo extends React.Component {
                 onChange={this.uploadVideoHandler} 
                 ref={fileInput => this.fileInput = fileInput}/>
 
-                <Button variant="contained" color="primary" 
+                <Button variant="contained" color="secondary" 
                 onClick={() => this.fileInput.click()}>
                 Upload a Video
                 </Button>
@@ -122,12 +124,13 @@ class UploadVideo extends React.Component {
 
                 <br/>
 
-                <Button variant="contained" color="primary" 
+                <Button variant="contained" color="secondary" 
                 onClick={this.createProjectHandler}>
-                Create Project
+                    Create Project
                 </Button>
 
             </form>
+            </CardContent>
             </Card>
         );
     }

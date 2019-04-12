@@ -48,7 +48,8 @@ class StudentProfile extends React.Component {
         </Grid>
         <Grid item xs={12}>
           <StudentProfileLeftPane userName={students[0].studentName} 
-            userHeadshot={students[0].studentHeadshot} userInformation={students[0].studentInformation}/>
+            userHeadshot={students[0].studentHeadshot} userInformation={students[0].studentInformation}
+            createNewProjectHandler={this.props.createNewProjectHandler}/>
         </Grid>
       </Grid>
     )

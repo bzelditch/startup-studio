@@ -5,7 +5,7 @@ import './Styles.css';
 import { createRequireFromPath } from 'module';
 import { grey } from '@material-ui/core/colors';
 
-const styles = {
+const styles = theme => ({
     smallAvatar : {
         margin : 10
     },
@@ -16,9 +16,9 @@ const styles = {
     },
     /* Can modify the styling later */
     studentInformation : {
-        backgroundColor: 'lightgrey'
+        backgroundColor: theme.palette.grey[200]
     }
-}
+});
 
 class StudentInformation extends React.Component {
     constructor (props) {
