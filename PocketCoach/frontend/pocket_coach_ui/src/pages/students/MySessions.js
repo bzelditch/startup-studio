@@ -16,7 +16,7 @@ const coaches = [
   {
     coachId: 1,
     coachName: "Julia Crenshaw",
-    coachHeadshot: require('../../static/images/gabi.jpg'),
+    coachHeadshot: require('./JuliaCrenshaw.jpeg'),
     coachInformation: {
         coachSpecialty: "Startup Pitches",
         coachResponseTime: "24 Hours",
@@ -28,7 +28,7 @@ const coaches = [
   {
     coachId: 2,
     coachName: "Milton Hinton",
-    coachHeadshot: require('../../static/images/gabi.jpg'),
+    coachHeadshot: require('./MiltonHinton.jpeg'),
     coachInformation: {
         coachSpecialty: "Acting, Delivery Skills",
         coachResponseTime: "48 Hours",
@@ -40,7 +40,7 @@ const coaches = [
   {
     coachId: 3,
     coachName: "Gigi Rosenberg",
-    coachHeadshot: require('../../static/images/gabi.jpg'),
+    coachHeadshot: require('./GigiRosenberg.jpg'),
     coachInformation: {
         coachSpecialty: "Media Presentations",
         coachResponseTime: "1 Week",
