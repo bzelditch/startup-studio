@@ -5,7 +5,6 @@ const styles = theme => ({
   tabs: {
     height:80,
     fontSize: 20,
-    color: "yellow"
   }
 });
 
@@ -32,7 +31,7 @@ class StudentProfileTabs extends Component {
           }}
         >
           {studentTabs.map(tab =>
-            <Tab label={tab} />
+            <Tab className={classes.tabs} label={tab} />
           )}
         </Tabs>
       </Paper>
