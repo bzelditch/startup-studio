@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import './Styles.css';
 import { createRequireFromPath } from 'module';
 import { grey } from '@material-ui/core/colors';
+import axios from "axios";
 
 const styles = {
     smallAvatar : {
@@ -32,6 +33,15 @@ class CoachInformation extends React.Component {
         }
 
     }
+
+  handleSendNotification = () => {
+    console.log("handleSendNotification sending")
+    axios.get('http://127.0.0.1:8000/api/notify/')
+      .then(res => {
+        console.log(res.data)
+      })
+  };
+
     render () {
       console.log(this.props.userName)
       console.log(this.state.finalVideoLink)
@@ -85,6 +95,7 @@ class CoachInformation extends React.Component {
                             <Button
                                 variant="contained"
                                 color="secondary">
+                                onClick={this.handleSendNotification}>
                                 Book Now
                             </Button>
                     </Grid>

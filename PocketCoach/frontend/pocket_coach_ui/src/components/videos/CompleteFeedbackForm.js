@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   formControl: {
-    width: 500,
+    width: 700,
   },
   selectEmpty: {
     marginTop: theme.spacing.unit * 2,
@@ -44,7 +44,7 @@ class CompleteFeedbackForm extends Component {
     const {classes} = this.props;
     return (
       <Fragment>
-        <Typography variant="p">
+        <Typography variant="subtitle1">
           Key Next Steps
         </Typography>
         <form>
@@ -57,12 +57,11 @@ class CompleteFeedbackForm extends Component {
             onChange={this.handleChange('keyNextSteps')}
             margin="normal"
             className={classes.formControl}
+            fullWidth
           />
-
-          <br/>
           <br/>
 
-          <Button color="primary" variant="contained" onClick={this.handleSubmit}>
+          <Button color="secondary" variant="contained" onClick={this.handleSubmit}>
             Submit Feedback
           </Button>
         </form>

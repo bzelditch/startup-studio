@@ -14,13 +14,19 @@ import MoreVertIcon from "@material-ui/core/SvgIcon/SvgIcon";
 const styles = theme => ({
   card: {
     backgroundColor: theme.palette.grey[200],
+    marginTop:theme.spacing.unit,
+    marginBottom:theme.spacing.unit,
   },
-  cardHeaderRoot: {
+
+  title: {
     backgroundColor: theme.palette.primary.main,
+    paddingTop:theme.spacing.unit,
+    paddingBottom:theme.spacing.unit,
   },
-  cardHeaderTitle: {
-    color: theme.palette.common.white,
-  },
+  titleText: {
+    fontWeight:600,
+    color:theme.palette.common.white,
+  }
 });
 
 
@@ -35,16 +41,18 @@ class FeedbackCard extends Component {
       <Card className={classes.card}>
 
         <CardHeader
-          classes={{
-            root: classes.cardHeaderRoot,
-            title: classes.cardHeaderTitle,
-          }}
+          className={classes.title}
           action={(
             <IconButton>
               <MoreVertIcon />
             </IconButton>
           )}
-          title="Key Next Steps"
+          title={(
+            <Typography variant="subtitle1" className={classes.titleText}>
+              Key Next Steps
+            </Typography>
+          )}
+          disableTypography
         />
 
         <CardContent>

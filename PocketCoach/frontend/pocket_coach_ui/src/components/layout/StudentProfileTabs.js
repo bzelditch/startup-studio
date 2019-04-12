@@ -1,25 +1,42 @@
-import React from "react";
-import {Paper, Tab, Tabs} from "@material-ui/core";
+import React, {Component} from "react";
+import {Paper, Tab, Tabs, withStyles} from "@material-ui/core";
 
-export default ({studentTabs, selectedStudentTab, onSelect}) => {
-  const selectedIndex = selectedStudentTab
-    ? studentTabs.findIndex(tab => tab === selectedStudentTab)
-    : 0;
+const styles = theme => ({
+  tabs: {
+    height:80,
+    fontSize: 20,
+  }
+});
+
+class StudentProfileTabs extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    const { classes, studentTabs, selectedStudentTab, onSelect} = this.props;
+    const selectedIndex = selectedStudentTab
+      ? studentTabs.findIndex(tab => tab === selectedStudentTab)
+      : 0;
 
     return (
-      <Paper > {/*className={classes.root}*/}
+      <Paper >
         <Tabs
+          tabItemContainerStyle={{height:80,}}
+          indicatorColor="primary"
+          textColor="primary"
           value={selectedIndex}
           onChange={(e, index) => {
             onSelect(studentTabs[index])
           }}
-          indicatorColor="primary"
-          textColor="primary"
         >
           {studentTabs.map(tab =>
-            <Tab label={tab} />
+            <Tab className={classes.tabs} label={tab} />
           )}
         </Tabs>
       </Paper>
-    );
-}
+    )
+  }
+};
+
+export default withStyles(styles)(StudentProfileTabs);

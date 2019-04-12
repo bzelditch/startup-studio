@@ -1,12 +1,10 @@
 import React, {Component, Fragment} from "react";
-import {Button, TextField, Typography,AppBar,Tab,Tabs,Grid} from "@material-ui/core";
+import {Button, TextField, Typography,Paper,Tab,Tabs,Grid} from "@material-ui/core";
 import { withStyles } from '@material-ui/core/styles';
 import MicIcon from '@material-ui/icons/Mic';
 import VideoLibraryIcon from '@material-ui/icons/VideoLibrary';
 import PencilIcon from '@material-ui/icons/Edit';
 import CommentStore from "../../stores/videos/CommentStore";
-
-//import PencilIcon from '@material-ui/icons/Videocam';
 
 const styles = theme => ({
   selectEmpty: {
@@ -14,11 +12,13 @@ const styles = theme => ({
   },
 
   form: {
-    display: 'flex',
     flexDirection: 'column',
     margin: 'auto',
     width: '100%',
   },
+  tabsPaper: {
+    backgroundColor: theme.palette.grey[200],
+  }
 });
 
 class AnnotationForm extends Component {
@@ -131,30 +131,45 @@ class AnnotationForm extends Component {
         <form className={classes.form}>
           <Grid container spacing={24} >
             <Grid item xs={12}>
-              <AppBar position="static">
-                <Tabs value={selectedTab} onChange={this.handleTabChange} variant="scrollable" scrollButtons="off">
+              <Paper position="static" className={classes.tabsPaper}>
+                <Tabs
+                  variant="fullWidth"
+                  value={selectedTab}
+                  onChange={this.handleTabChange}
+                  indicatorColor="primary"
+                  textColor="primary"
+                  >
                   <Tab icon={<PencilIcon />} label="Written feedback" />
                   <Tab icon={<MicIcon />} label="Audio feedback"/>
                   <Tab icon={<VideoLibraryIcon />} label="Sample videos"/>
                 </Tabs>
-              </AppBar>
-            </Grid>
+              </Paper>
 
+              <Grid container alignItems="center" spacing={24}>
               {selectedTab === 0 ?
-                <TextField
-                  variant="outlined"
-                  multiline
-                  fullWidth
-                  rows="4"
-                  value={text}
-                  placeholder="Provide feedback..."
-                  onChange={this.handleChange('text')}
-                  margin="normal"
-                />
+                <Fragment>
+                  <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    multiline
+                    fullWidth
+                    rows="6"
+                    value={text}
+                    placeholder="Provide feedback..."
+                    onChange={this.handleChange('text')}
+                    margin="normal"
+                  />
+                  </Grid>
+                </Fragment>
                 : selectedTab === 1 ?
-                  <Typography variant="body1">Audio</Typography>
+                  <Fragment>
+                    <Grid item xs={12}>
+                      <Typography variant="body1">Audio</Typography>
+                    </Grid>
+                  </Fragment>
                   : <Fragment>
-                      <Grid item xs={8}>
+
+                    <Grid item xs={8}>
                         <TextField
                           fullWidth
                           label="Youtube URL"
@@ -164,47 +179,41 @@ class AnnotationForm extends Component {
                         />
                       </Grid>
                       <Grid item xs={4} >
-                        <Button color="primary" variant="outlined" onClick={this.handleYoutubePreview}>
+                        <Button color="secondary" variant="outlined" onClick={this.handleYoutubePreview} >
                           Preview video
                         </Button>
                       </Grid>
-                      {videoInfo.preview && this.getVideoId(videoInfo.url).id?
-                        <iframe src={'https://www.youtube.com/embed/' + this.getVideoId(videoInfo.url).id}
-                                frameBorder='0'
-                                allow='autoplay; encrypted-media'
-                                allowFullScreen
-                                title='video'
+
+                      <Grid item xs={12} >
+                        {videoInfo.preview && this.getVideoId(videoInfo.url).id?
+                          <iframe src={'https://www.youtube.com/embed/' + this.getVideoId(videoInfo.url).id}
+                                  frameBorder='0'
+                                  allow='autoplay; encrypted-media'
+                                  allowFullScreen
+                                  title='video'
+                          />
+                          : null}
+                      </Grid>
+                      <Grid item xs={12} >
+                        <TextField
+                          variant="outlined"
+                          multiline
+                          fullWidth
+                          rows="2"
+                          value={videoInfo.desc}
+                          onChange={this.handleVideoInfoChange('desc')}
+                          placeholder="Provide a description of the video..."
+                          margin="normal"
                         />
-                        : null}
-                      <TextField
-                        variant="outlined"
-                        multiline
-                        fullWidth
-                        rows="2"
-                        value={videoInfo.desc}
-                        onChange={this.handleVideoInfoChange('desc')}
-                        placeholder="Provide a description of the video..."
-                        margin="normal"
-                      />
+                      </Grid>
                     </Fragment>
               }
-                  {/*<TextField
-                    variant="outlined"
-                    multiline
-                    fullWidth
-                    rows="2"
-                    value={draftAnnotation.text}
-                    placeholder="Say something about this video..."
-                    onChange={this.handleChange('text')}
-                    margin="normal"
-                  />*/}
-
-
-
+              </Grid>
+            </Grid>
             <br/><br/>
 
-            <Grid container xs={12} justify="flex-end">
-              <Button color="primary" variant="contained" onClick={this.handleSubmit}>
+            <Grid item xs={12} >
+              <Button color="secondary" variant="contained" onClick={this.handleSubmit}>
                 Post Feedback Annotation
               </Button>
             </Grid>
