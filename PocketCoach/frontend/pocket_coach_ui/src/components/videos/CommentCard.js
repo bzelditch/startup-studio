@@ -34,6 +34,9 @@ class CommentCard extends React.Component {
   render() {
     const {comment, classes} = this.props;
     const commentCoachDetails = comment.coachId? CoachStore.getCoachDetailsById(comment.coachId): null;
+
+    const break_after_comment = comment.text !== "" && comment.images !== [] || comment.text !== "" && comment.videos !== [];
+    const break_after_images = comment.images !== [] && comment.videos !== [];
     return (
       <Card className={classes.card}>
         <CardHeader
@@ -52,7 +55,7 @@ class CommentCard extends React.Component {
                 {comment.createTimestamp}
               </Typography>
               <Typography color="textSecondary">
-                Timestamp: {comment.videoTimestamp} s
+                Timestamp: {comment.videoTimestamp.toFixed(2)} s
               </Typography>
             </Fragment>
 
@@ -64,6 +67,7 @@ class CommentCard extends React.Component {
           {comment.text}
         </Typography>
 
+        {break_after_comment? <br/> : <p>hmmm</p>}
 
         {comment.images.map((img) =>
           <CardMedia
@@ -71,6 +75,8 @@ class CommentCard extends React.Component {
             image={img}
           />
         )}
+
+        {break_after_images? <br/> : <p>hmm</p>}
 
         {comment.videos.map((video) =>
           <Grid container spacing={24} >

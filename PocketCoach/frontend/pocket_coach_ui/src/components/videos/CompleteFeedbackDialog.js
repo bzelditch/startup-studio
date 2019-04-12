@@ -1,8 +1,21 @@
 import React, {Component,Fragment} from "react";
-import {Fab, Dialog, DialogContent, DialogContentText, DialogTitle} from '@material-ui/core/';
+import {Fab, Dialog, DialogContent, DialogContentText, DialogTitle,Typography} from '@material-ui/core/';
 import {CompleteFeedbackForm} from '../';
+import { withStyles } from '@material-ui/core/styles';
 
-export default class extends Component {
+const styles = theme => ({
+  title: {
+    backgroundColor: theme.palette.primary.main,
+    paddingTop:theme.spacing.unit,
+    paddingBottom:theme.spacing.unit,
+  },
+  titleText: {
+    fontWeight:600,
+    color:theme.palette.common.white,
+  }
+});
+
+class CompleteFeedbackDialog extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,14 +32,27 @@ export default class extends Component {
 
   render() {
     const {open} = this.state;
-
+    const {classes} = this.props;
+    console.log("bah")
+    console.log(classes)
     return (
       <Fragment>
         <Dialog
+          maxWidth="md"
           open={open}
           onClose={this.props.handleClose}
         >
-          <DialogTitle>Complete Feedback</DialogTitle>
+          <DialogTitle
+            classes={{
+              root: classes.title,
+            }}
+            disableTypography
+          >
+            <Typography variant="h6" className={classes.titleText}>
+            Complete Feedback
+            </Typography>
+          </DialogTitle>
+          <br/>
           <DialogContent>
             <CompleteFeedbackForm onSubmit={this.props.handleSubmit}/>
           </DialogContent>
@@ -36,3 +62,4 @@ export default class extends Component {
     )
   }
 }
+export default withStyles(styles)(CompleteFeedbackDialog);

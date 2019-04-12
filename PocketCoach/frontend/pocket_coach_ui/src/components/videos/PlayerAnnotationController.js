@@ -6,9 +6,15 @@ import * as CommentActions from "../../actions/videos/CommentActions";
 import { CommentCard, FeedbackCard, CommentsTimeline, CreateAnnotationDialog, CompleteFeedbackDialog } from '../../components';
 import CommentsStore from "../../stores/videos/CommentStore";
 import FeedbackStore from "../../stores/videos/FeedbackStore";
-import axios from 'axios';
+import { withStyles } from '@material-ui/core/styles';
 
-export default class PlayerAnnotationController extends Component {
+const styles = theme => ({
+  container: {
+    alignItems: 'baseline',
+  },
+});
+
+class PlayerAnnotationController extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -95,17 +101,10 @@ export default class PlayerAnnotationController extends Component {
     CommentActions.createFeedbackAction(feedback);
   }
 
-  handleSendNotification = () => {
-    console.log("handleSendNotification sending")
-    axios.get('http://127.0.0.1:8000/api/notify/')
-      .then(res => {
-        console.log(res.data)
-      })
-  };
 
   render() {
     const {videoTimestamp,createAnnotationDialogOpen,completeFeedbackDialogOpen,comments, curVideo} = this.state;
-    const {curCoach} = this.props;
+    const {curCoach, classes} = this.props;
     return (
       <div>
         <CreateAnnotationDialog
@@ -140,10 +139,10 @@ export default class PlayerAnnotationController extends Component {
             </Typography>
 
           </Grid>
-          <Grid item container xs={4} justify="flex-end">
+          <Grid item container xs={4} justify="flex-end"  alignItems="baseline">
             <Button
               variant="contained"
-              color="primary"
+              color="secondary"
               onClick={this.handleOpenCreateAnnotationDialog}>
               Create Feedback Annotation
             </Button>
@@ -174,8 +173,6 @@ export default class PlayerAnnotationController extends Component {
         <CommentsTimeline comments={comments}
                           handleCommentTimelinePress={this.handleCommentTimelinePress}/>
 
-        <br/>
-
         {this.state.feedback.map((feedback) =>
           <FeedbackCard feedback={feedback}/>
         )}
@@ -188,23 +185,19 @@ export default class PlayerAnnotationController extends Component {
 
         <br/>
 
-        <Grid container item xs={12} justify="flex-end">
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={this.handleOpenCompleteFeedbackDialog}>
-            Submit Feedback and Notify Student
-          </Button>
-        </Grid>
-        <Grid container item xs={12} justify="flex-end">
+        <Grid container xs={12} justify="flex-end" >
+          <Grid item>
           <Button
             variant="contained"
             color="secondary"
-            onClick={this.handleSendNotification}>
-            Test Send Notification
+            onClick={this.handleOpenCompleteFeedbackDialog}>
+            Submit Feedback
           </Button>
+          </Grid>
         </Grid>
       </div>
     );
   }
 }
+
+export default withStyles(styles)(PlayerAnnotationController);

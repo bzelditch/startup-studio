@@ -1,5 +1,5 @@
 import React, {Component,Fragment} from "react";
-import {Fab, Dialog, DialogContent, DialogContentText, DialogTitle} from '@material-ui/core/';
+import {Fab, Dialog, DialogContent, DialogContentText, DialogTitle, Typography} from '@material-ui/core/';
 import {AnnotationForm} from '../';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -7,6 +7,15 @@ const styles = theme => ({
   form: {
     width: 1000,
   },
+  title: {
+    backgroundColor: theme.palette.primary.main,
+    paddingTop:theme.spacing.unit,
+    paddingBottom:theme.spacing.unit,
+  },
+  titleText: {
+    fontWeight:600,
+    color:theme.palette.common.white,
+  }
 });
 
 class CreateAnnotationDialog extends Component {
@@ -39,8 +48,19 @@ class CreateAnnotationDialog extends Component {
           fullWidth
           open={open}
           onClose={this.props.handleClose}
+          classes={{ paper: classes.dialogPaper }}
         >
-          <DialogTitle>Create a New Annotation.</DialogTitle>
+          <DialogTitle
+            classes={{
+              root: classes.title,
+            }}
+            disableTypography
+          >
+            <Typography variant="h6" className={classes.titleText}>
+              Create New Annotation
+            </Typography>
+          </DialogTitle>
+          <br/>
           <DialogContent>
             <AnnotationForm curCoach={curCoach}
                             curVideo={curVideo}

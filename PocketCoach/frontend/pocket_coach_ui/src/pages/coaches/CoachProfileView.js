@@ -17,7 +17,11 @@ const styles = theme => ({
     },
   },
   appBarSpacer: theme.mixins.toolbar,
-})
+  tabs: {
+    height:80,
+    fontSize: 20,
+  }
+});
 
 function createTabObject(name, href) {
   return {
@@ -50,9 +54,10 @@ class CoachProfileView extends Component {
             value={location.pathname}
             indicatorColor="primary"
             textColor="primary"
+            tabItemContainerStyle={{}}
             >
             {coachTabs.map(tab =>
-              <Tab key={tab.name} label={tab.name} value={tab.href} component={Link} to={tab.href} {...this.props}/>
+              <Tab className={classes.tabs} key={tab.name} label={tab.name} value={tab.href} component={Link} to={tab.href} {...this.props}/>
             )}
           </Tabs>
         </Paper>
