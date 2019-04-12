@@ -75,7 +75,7 @@ class Header extends React.Component {
     const {classes} = this.props;
     return (
       <div className={classes.root}>
-        <AppBar position="static">
+        <AppBar position="static" color="primary">
           <Toolbar>
             <Typography className={classes.title} variant="h5" color="inherit" style={{flex: 1}}>
               PocketCoach
