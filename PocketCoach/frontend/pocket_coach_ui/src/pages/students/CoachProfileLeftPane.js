@@ -7,7 +7,8 @@ class CoachProfileLeftPane extends React.Component {
         super(props);
         this.userName = props.userName;
         this.userHeadshot = props.userHeadshot;
-        this.userInformation = props.userInformation
+        this.userInformation = props.userInformation;
+        this.finalVideoLink = props.finalVideoLink;
     }
     render (props) {
         return (
@@ -15,7 +16,8 @@ class CoachProfileLeftPane extends React.Component {
 
                 <CoachInformation userName={this.userName}
                                     userHeadshot={this.userHeadshot}
-                                    userInformation={this.userInformation}/>
+                                    userInformation={this.userInformation}
+                                    finalVideoLink={this.finalVideoLink}/>
 
                 <br/>
 
