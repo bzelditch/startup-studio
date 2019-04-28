@@ -3,7 +3,8 @@ import {Typography, Card, CardContent, Grid, Avatar, CardHeader, Button} from '@
 import { withStyles } from '@material-ui/core/styles';
 import './Styles.css';
 import { createRequireFromPath } from 'module';
-import { grey } from '@material-ui/core/colors';
+import StarRatings from 'react-star-ratings';
+
 import axios from "axios";
 
 const styles = theme => ({
@@ -15,10 +16,7 @@ const styles = theme => ({
         width: 150,
         height: 150,
     },
-    /* Can modify the styling later */
-    studentInformation : {
-        backgroundColor: 'lightgrey'
-    }
+
 });
 
 class CoachInformation extends React.Component {
@@ -47,23 +45,32 @@ class CoachInformation extends React.Component {
   };
 
     render () {
-      console.log(this.props.userName)
-      console.log(this.state.finalVideoLink)
+        const {coach, classes} = this.props;
         return (
-            <Card className={this.props.classes.coachInformation}>
+            <Card>
                 <CardContent>
                 <Grid container spacing={12}>
                     <Grid item xs={2}>
-                        <Avatar src={this.props.userHeadshot} alt={this.props.userName} className={this.props.classes.bigAvatar}/>
+                        <Avatar src={coach.profileImage} className={classes.bigAvatar}/>
                     </Grid>
                     <Grid item xs={4}>
-                        <CardHeader title={this.props.userName}/> {/* Should be passed in via props*/}
+                        <CardHeader title={coach.firstName + " " + coach.lastName}/> {/* Should be passed in via props*/}
+
                         <CardContent>
+                          <StarRatings
+                            rating={coach.rating}
+                            starRatedColor="red"
+                            numberOfStars={5}
+                            name='rating'
+                            starDimension="30px"
+                            starSpacing="3px"
+                          />
+                          <br/><br/>
                             <Typography>
                                 Specialities
                             </Typography>
                             <div>
-                                {this.props.userInformation.coachSpecialty}
+                                {coach.specialties.join(", ")}
                             </div>
                             <br>
                             </br>
@@ -71,7 +78,7 @@ class CoachInformation extends React.Component {
                                 Average Response Time
                             </Typography>
                             <div>
-                                {this.props.userInformation.coachResponseTime}
+                                {coach.responseTime}
                             </div>
                             <br>
                             </br>
@@ -79,14 +86,14 @@ class CoachInformation extends React.Component {
                                 Worked At
                             </Typography>
                             <div>
-                                {this.props.userInformation.workedAt}
+                                {coach.workExperience.join(", ")}
                             </div>
                             <br>
                             </br>
                             </CardContent>
                     </Grid>
                     <Grid item container xs={4} alignItems= 'center'>
-                      <iframe src= {'https://www.youtube.com/embed/' + this.props.finalVideoLink}
+                      <iframe src= {'https://www.youtube.com/embed/' + coach.videoLink}
                             frameBorder='0'
                             allow='autoplay; encrypted-media'
                             allowFullScreen

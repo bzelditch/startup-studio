@@ -39,7 +39,6 @@ class PlayerAnnotationController extends Component {
         feedback: FeedbackStore.getAllFeedbackForVideoId(this.state.curVideo.videoId),
       })
     })
-
   }
 
   componentDidMount() {

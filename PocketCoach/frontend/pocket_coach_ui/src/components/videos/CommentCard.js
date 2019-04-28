@@ -67,7 +67,7 @@ class CommentCard extends React.Component {
           {comment.text}
         </Typography>
 
-        {break_after_comment? <br/> : <p>hmmm</p>}
+        {break_after_comment? <br/> : null}
 
         {comment.images.map((img) =>
           <CardMedia
@@ -76,7 +76,7 @@ class CommentCard extends React.Component {
           />
         )}
 
-        {break_after_images? <br/> : <p>hmm</p>}
+        {break_after_images? <br/> :null}
 
         {comment.videos.map((video) =>
           <Grid container spacing={24} >
