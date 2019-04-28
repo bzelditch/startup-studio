@@ -20,7 +20,7 @@ class NotifyView(APIView):
                 "base/emailNotification.html",
                 {
                     'student_name': student_name,
-                    'link': "http://localhost:3000/coach/1/sessions/3",
+                    'link': "http://pocketcoach.live/coach/1/sessions/3",
                 }
             )
 

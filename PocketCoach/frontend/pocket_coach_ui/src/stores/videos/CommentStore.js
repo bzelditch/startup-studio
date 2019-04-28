@@ -18,7 +18,7 @@ class CommentStore extends EventEmitter {
     this.commentDatabase = [
       {
         commentId: 1,
-        videoId: 3,
+        videoId: 1 ,
         studentId: null,
         coachId: 1,
         createTimestamp: getCurrentDatePlusDays(-3),
@@ -35,7 +35,7 @@ class CommentStore extends EventEmitter {
       },
       {
         commentId: 2,
-        videoId: 3,
+        videoId: 1,
         studentId: null,
         coachId: 1,
         createTimestamp: getCurrentDatePlusDays(-3),
