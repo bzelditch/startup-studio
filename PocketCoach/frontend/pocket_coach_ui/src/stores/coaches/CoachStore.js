@@ -25,7 +25,7 @@ class CoachStore extends EventEmitter {
         lastName: "Rosenburg",
         createTimestamp: getCurrentDatePlusDays(-10),
         avatarColor: randomMaterialColor.getColor({text: "Gigi Rosenburg"}),
-        profileImage: require('../../static/images/coaches/GigiRosenberg.jpg'),
+        profileImage: require('../../static/images/coaches/GigiRosenberg.jpeg'),
 
         specialties: ["Media Presentations"],
         workExperience: ["Professor at UCLA","Ted X speaker"],
