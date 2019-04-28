@@ -3,7 +3,7 @@ import {Header, StudentProfileTabs} from "../../components";
 import {StudentProfile, FindCoaches, StudentSessions} from "../";
 import { withStyles } from '@material-ui/core/styles';
 import {Paper, Tab, Tabs} from "@material-ui/core";
-import {Link, Route, Switch, Redirect} from "react-router-dom";
+import {Link, Route, Switch} from "react-router-dom";
 
 const styles = theme => ({
   layout: {
@@ -49,7 +49,7 @@ class StudentProfileView extends Component {
 
     return (
       <Fragment >
-        <Header/>
+        <Header {...this.props}/>
         <Paper >
           <Tabs
             value={location.pathname}

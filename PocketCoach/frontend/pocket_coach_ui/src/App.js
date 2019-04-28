@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 import { Header } from './components';
-import {StudentProfileView, CoachProfileView} from "./pages";
+import {StudentProfileView, CoachProfileView, Homepage} from "./pages";
 import { MuiThemeProvider, createMuiTheme, creat } from '@material-ui/core/styles';
 // import createPalette from 'material-ui/styles/palette';
 // import createTypography from 'material-ui/styles/typography';
@@ -77,8 +77,9 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <Switch>
-            <Route path='/student' component={StudentProfileView} />
+            <Route path='/student/:studentId' component={StudentProfileView} />
             <Route path='/coach/:coachId' component={CoachProfileView} />
+            <Route path='/' component={Homepage} />
           </Switch>
         </div>
       </BrowserRouter>

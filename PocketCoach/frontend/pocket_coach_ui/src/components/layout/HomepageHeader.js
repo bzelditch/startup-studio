@@ -1,11 +1,11 @@
 import React from 'react'
-import {AppBar, Toolbar, Typography, IconButton, Button,InputBase,Avatar,Tooltip} from '@material-ui/core'
+import {AppBar, Toolbar, Typography, Button, InputBase, Tooltip} from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search';
 import { withStyles } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import MessageIcon from '@material-ui/icons/Sms';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import StudentStore from "../../stores/students/StudentStore";
+import CoachStore from "../../stores/coaches/CoachStore";
 
 const styles = theme => ({
   root: {
@@ -66,18 +66,18 @@ const styles = theme => ({
   },
 });
 
-class Header extends React.Component {
+class HomepageHeader extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    const {classes, match} = this.props;
-    const studentId = parseInt(match.params.studentId);
+    const {classes} = this.props;
     return (
       <div className={classes.root}>
         <AppBar position="static" className={classes.navBar}>
-          <Toolbar color="secondary">
+          <Toolbar >
+
             <Typography className={classes.title} variant="h4" color="primary" style={{flex: 1}}>
               PocketCoach
             </Typography>
@@ -95,20 +95,15 @@ class Header extends React.Component {
               />
             </div>
             <div className={classes.grow} />
-            <Tooltip title="Messages" aria-label="Messages">
-              <IconButton color="inherit">
-                <MessageIcon />
-              </IconButton>
+            <Tooltip title="Student Login" aria-label="Student Login">
+              <Button color="inherit">
+                Student Login
+              </Button>
             </Tooltip>
-            <Tooltip title="Notifications" aria-label="Notifications">
-              <IconButton color="inherit">
-                <NotificationsIcon/>
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Profile Settings" aria-label="Profile Settings">
-              <IconButton color="inherit">
-                {StudentStore.getAvatarById(studentId)}
-              </IconButton>
+            <Tooltip title="Coach Login" aria-label="Coach Login">
+              <Button color="inherit">
+                Coach Login
+              </Button>
             </Tooltip>
           </Toolbar>
         </AppBar>
@@ -117,4 +112,4 @@ class Header extends React.Component {
   }
 };
 
-export default withStyles(styles)(Header);
+export default withStyles(styles)(HomepageHeader);
