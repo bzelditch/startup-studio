@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import MessageIcon from '@material-ui/icons/Sms';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import red from "@material-ui/core/colors/red";
+import StudentStore from "../../stores/students/StudentStore";
 
 const styles = theme => ({
   root: {
@@ -72,7 +72,8 @@ class Header extends React.Component {
   }
 
   render() {
-    const {classes} = this.props;
+    const {classes, match} = this.props;
+    const studentId = parseInt(match.params.studentId);
     return (
       <div className={classes.root}>
         <AppBar position="static" className={classes.navBar}>
@@ -106,7 +107,7 @@ class Header extends React.Component {
             </Tooltip>
             <Tooltip title="Profile Settings" aria-label="Profile Settings">
               <IconButton color="inherit">
-                <Avatar className={classes.avatar}>G</Avatar>
+                {StudentStore.getAvatarById(studentId)}
               </IconButton>
             </Tooltip>
           </Toolbar>

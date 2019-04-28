@@ -1,7 +1,7 @@
 import React from "react";
 import {Card, CardHeader, CardContent, TextField, Button} from '@material-ui/core';
 import VideoStore from "../../stores/videos/VideoStore";
-import StudentProfilesStore from "../../stores/students/StudentProfilesStore";
+import StudentStore from "../../stores/students/StudentStore";
 import {Link, Route, Switch} from 'react-router-dom';
 
 function getCurrentDatePlusDays(days) {
@@ -26,7 +26,7 @@ class UploadVideo extends React.Component {
             projectDesc: '',
             projectVideo: '',
             videoTitle: '',
-            projectGoals: ''
+            projectGoals: '',
         };
         this.createVideoObj = this.createVideoObj.bind(this);
         this.createProjectHandler = this.createProjectHandler.bind(this);
@@ -71,7 +71,7 @@ class UploadVideo extends React.Component {
             All we're doing here is appending the video onto the student's
             video list. Really we should store a list of projects per student
             and update that list with a project object (just like the VideoStore) */
-        StudentProfilesStore.updateStudentProfile(this.state.userId, VideoStore.getNumVideos());
+        StudentStore.updateStudentProfile(this.state.userId, VideoStore.getNumVideos());
         this.props.nextHandler();
     }
 
