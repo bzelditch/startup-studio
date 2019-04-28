@@ -3,7 +3,6 @@ import { Typography, Grid, Card, Link,CardHeader,Toolbar} from '@material-ui/cor
 import {Breadcrumbs} from '@material-ui/lab';
 import { withStyles } from '@material-ui/core/styles';
 import {StudentProfileLeftPane, StudentProfileRightPane} from '../../components/';
-import UploadVideo from '../../components/students/UploadVideo'
 
 
 const styles = {
@@ -30,8 +29,6 @@ const students = [
 class StudentProfile extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-    }
   };
 
   render() {
@@ -47,9 +44,8 @@ class StudentProfile extends React.Component {
           </Breadcrumbs>
         </Grid>
         <Grid item xs={12}>
-          <StudentProfileLeftPane userName={students[0].studentName} 
-            userHeadshot={students[0].studentHeadshot} userInformation={students[0].studentInformation}
-            createNewProjectHandler={this.props.createNewProjectHandler}/>
+          <StudentProfileLeftPane {...this.props} userName={students[0].studentName}
+            userHeadshot={students[0].studentHeadshot} userInformation={students[0].studentInformation}/>
         </Grid>
       </Grid>
     )

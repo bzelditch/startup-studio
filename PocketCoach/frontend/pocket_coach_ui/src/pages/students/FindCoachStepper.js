@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import UploadVideo from '../../components/students/UploadVideo';
 import FindCoachCard from './FindCoachCard';
-import MySessions from './MySessions';
+import MySessions from './CoachSearchResults';
 
 const styles = theme => ({
   root: {
@@ -31,7 +31,6 @@ class FindCoachStepper extends React.Component {
 
   constructor(props){
     super(props);
-    /*this.handleNext = this.handleNext.bind(this);*/
   };
 
   state = {
