@@ -1,7 +1,6 @@
 import HomepageHeader from './layout/HomepageHeader';
 import Header from './layout/Header';
 import CoachHeader from './layout/CoachHeader';
-import StudentProfileTabs from './layout/StudentProfileTabs';
 import CommentCard from './videos/CommentCard';
 import FeedbackCard from './videos/FeedbackCard';
 import AnnotationForm from './videos/AnnotationForm';
@@ -17,7 +16,6 @@ export {
   HomepageHeader,
   Header,
   CoachHeader,
-  StudentProfileTabs,
   CommentCard,
   FeedbackCard,
   AnnotationForm,

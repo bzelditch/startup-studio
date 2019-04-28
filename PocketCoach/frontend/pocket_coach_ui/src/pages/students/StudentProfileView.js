@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import {Header, StudentProfileTabs} from "../../components";
-import {StudentProfile, FindCoaches, MySessions} from "../";
+import {StudentProfile, FindCoaches, StudentSessions} from "../";
 import { withStyles } from '@material-ui/core/styles';
+import {Paper, Tab, Tabs} from "@material-ui/core";
+import {Link, Route, Switch, Redirect} from "react-router-dom";
 
 const styles = theme => ({
   layout: {
@@ -15,51 +17,61 @@ const styles = theme => ({
     },
   },
   appBarSpacer: theme.mixins.toolbar,
-})
+  tabs: {
+    height:80,
+    fontSize: 20,
+  }
+});
+
+function createTabObject(name, href) {
+  return {
+    name: name,
+    href: href,
+  }
+};
 
 class StudentProfileView extends Component {
   constructor(props) {
     super(props);
-
+    console.log("StudentProfileView")
+    console.log(props)
     this.state = {
-      selectedStudentTab: "Profile",
-      studentTabs: ["Profile", "Find Coaches", "My Sessions"],
+      tabs: [createTabObject("Profile",  props.match.url ),
+        createTabObject("Find Coaches",  props.match.url+"/findcoaches"),
+        createTabObject("My Sessions",  props.match.url+"/sessions")],
     }
   };
 
-  handleStudentTabSelected = tab => {
-    this.setState({
-      selectedStudentTab: tab,
-    })
-  }
-
-  getStudentTabPage(tab) {
-    switch (tab) {
-      case 'Profile':
-        return <StudentProfile createNewProjectHandler={this.handleStudentTabSelected}/>
-      case 'Find Coaches':
-        return <FindCoaches/>
-      case 'My Sessions':
-        return <MySessions/>
-    }
-  }
 
   render() {
-    const {studentTabs, selectedStudentTab} = this.state
-    const { classes } = this.props;
+    const { tabs } = this.state;
+    const { classes, location} = this.props;
 
     return (
       <Fragment >
         <Header/>
-        <StudentProfileTabs
-          studentTabs={studentTabs}
-          selectedStudentTab={selectedStudentTab}
-          onSelect={this.handleStudentTabSelected}
-        />
+        <Paper >
+          <Tabs
+            value={location.pathname}
+            indicatorColor="primary"
+            textColor="primary"
+          >
+            {tabs.map(tab =>
+              <Tab className={classes.tabs} key={tab.name} label={tab.name} value={tab.href} component={Link} to={tab.href} {...this.props}/>
+            )}
+          </Tabs>
+        </Paper>
+
+
         <div className={classes.layout}>
-          <div className={classes.appBarSpacer} />
-          {this.getStudentTabPage(selectedStudentTab)}
-        </div>
+        <div className={classes.appBarSpacer} />
+        <Switch>
+          <Route path="/student/:studentId/findcoaches" component={FindCoaches} />
+          <Route path="/student/:studentId/sessions" component={StudentSessions} />
+          <Route path="/student/:studentId" component={StudentProfile} />
+        </Switch>
+
+      </div>
       </Fragment>
     )
   }

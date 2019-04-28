@@ -2,7 +2,8 @@ import Homepage from './base/Homepage'
 
 import StudentProfileView from './students/StudentProfileView'
 import StudentProfile from './students/StudentProfile'
-import MySessions from './students/MySessions'
+import CoachSearchResults from './students/CoachSearchResults'
+import StudentSessions from './students/StudentSessions'
 import FindCoaches from './students/FindCoaches'
 
 
@@ -16,7 +17,8 @@ export {
   StudentProfileView,
 	StudentProfile,
   FindCoaches,
-  MySessions,
+  CoachSearchResults,
+  StudentSessions,
 
   CoachProfileView,
   CoachProfile,

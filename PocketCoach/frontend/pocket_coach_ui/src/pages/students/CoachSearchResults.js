@@ -11,7 +11,7 @@ const styles = {
   },
 };
 
-class CoachProfile extends React.Component {
+class CoachSearchResults extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -52,4 +52,4 @@ class CoachProfile extends React.Component {
   }
 };
 
-export default withStyles(styles)(CoachProfile);
+export default withStyles(styles)(CoachSearchResults);
