@@ -32,6 +32,8 @@ class CoachStore extends EventEmitter {
         responseTime: "24 Hours",
         videoLink: 'GXoYll6Wbe0',
         rating: 4.68,
+
+        intro: "As a consultant and public speaking coach, I draw upon my background in theater, psychology, visual art, production management, storytelling and corporate communications. I teach ambition artists how to get stuff done in the direction of true north, wherever that may be. And I teach public speakers how to get standing ovations. ",
       },
       {
         coachId: 2,
@@ -46,6 +48,8 @@ class CoachStore extends EventEmitter {
         responseTime: "24 Hours",
         videoLink: '02yv-Xf77SQ',
         rating: 4.78,
+
+        intro: "In New York City, I worked for 15 years for VC firms. As vice-president at BoxGroup and a partner at Union Square Ventures, I have had experience seeing and evaluating many pitch presentations.",
       },
       {
         coachId: 3,
@@ -60,6 +64,8 @@ class CoachStore extends EventEmitter {
         responseTime: "24 Hours",
         videoLink: 'fh28oGbPmr4',
         rating: 4.76,
+
+        intro: "",
       },
     ];
 
