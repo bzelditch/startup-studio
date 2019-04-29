@@ -10,7 +10,7 @@ import CommentsTimeline from './videos/CommentsTimeline'
 import StudentProfileLeftPane from './students/StudentProfileLeftPane';
 import CompleteFeedbackForm from './videos/CompleteFeedbackForm';
 import CompleteFeedbackDialog from './videos/CompleteFeedbackDialog';
-
+import CoachProfileInformation from './coaches/CoachProfileInformation';
 
 export {
   HomepageHeader,
@@ -25,4 +25,5 @@ export {
   CompleteFeedbackDialog,
   CommentsTimeline,
   StudentProfileLeftPane,
+  CoachProfileInformation,
 };
