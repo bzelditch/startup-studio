@@ -1,5 +1,5 @@
 import React from 'react'
-import {AppBar, Toolbar, Typography, IconButton, InputBase, Tooltip} from '@material-ui/core'
+import {AppBar, Toolbar, Typography, IconButton, InputBase, Tooltip, Link} from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search';
 import { withStyles } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
@@ -79,7 +79,9 @@ class CoachHeader extends React.Component {
         <AppBar position="static" className={classes.navBar}>
           <Toolbar >
             <Typography className={classes.title} variant="h4" color="primary" style={{flex: 1}}>
+              <Link href="/" underline="none">
               PocketCoach
+              </Link>
             </Typography>
 
             <div className={classes.search}>

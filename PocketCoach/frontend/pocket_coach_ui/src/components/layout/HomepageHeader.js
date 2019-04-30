@@ -1,11 +1,9 @@
 import React from 'react'
-import {AppBar, Toolbar, Typography, Button, InputBase, Tooltip} from '@material-ui/core'
+import {AppBar, Toolbar, Typography, Button, InputBase, Tooltip, Link, Menu, MenuItem} from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search';
 import { withStyles } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
-import MessageIcon from '@material-ui/icons/Sms';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import CoachStore from "../../stores/coaches/CoachStore";
+import MenuLink  from './MenuLink';
 
 const styles = theme => ({
   root: {
@@ -66,20 +64,41 @@ const styles = theme => ({
   },
 });
 
+
+function createMenuLinkObject(name, href) {
+  return {
+    name: name,
+    href: href,
+  }
+};
+
 class HomepageHeader extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      anchorEl: null,
+    };
   }
 
   render() {
     const {classes} = this.props;
+    const studentMenuLinks = [
+      createMenuLinkObject("Gabi Zandi", "/student/1"),
+    ];
+    const coachMenuLinks = [
+      createMenuLinkObject("Gigi Rosenberg", "/coach/1"),
+      createMenuLinkObject("Julia Crenshaw", "/coach/2"),
+    ];
     return (
       <div className={classes.root}>
         <AppBar position="static" className={classes.navBar}>
           <Toolbar >
 
             <Typography className={classes.title} variant="h4" color="primary" style={{flex: 1}}>
-              PocketCoach
+              <Link href="/" underline="none">
+                PocketCoach
+              </Link>
             </Typography>
 
             <div className={classes.search}>
@@ -95,16 +114,10 @@ class HomepageHeader extends React.Component {
               />
             </div>
             <div className={classes.grow} />
-            <Tooltip title="Student Login" aria-label="Student Login">
-              <Button color="inherit">
-                Student Login
-              </Button>
-            </Tooltip>
-            <Tooltip title="Coach Login" aria-label="Coach Login">
-              <Button color="inherit">
-                Coach Login
-              </Button>
-            </Tooltip>
+
+            <MenuLink buttonLabel={"Student Login"} menuLinks={studentMenuLinks}/>
+
+            <MenuLink buttonLabel={"Coach Login"} menuLinks={coachMenuLinks}/>
           </Toolbar>
         </AppBar>
       </div>
