@@ -43,16 +43,16 @@ function FindCoachCard(props) {
         <Typography color="textPrimary" variant = "h6" gutterBottom>
           <span>What Type of Presentation is This?</span>
         </Typography>
-        <PresentationCheckbox/>
+        <PresentationCheckbox presentationTypeHandler={props.presentationTypeHandler}/>
         <Divider className={classes.divider}/>
         <Typography color="textPrimary" variant = "h6" gutterBottom>
           <span>What Goals are You Working On?</span>
-          <GoalChips/>
+          <GoalChips goalHandler={props.goalHandler}/>
         </Typography>
         <Divider className={classes.divider}/>
         <Typography color="textPrimary" variant = "h6" gutterBottom>
           <span>What is your Preferred Response Time?</span>
-          <FeedbackTimeCheckbox/>
+          <FeedbackTimeCheckbox responseTimeHandler={props.responseTimeHandler}/>
         </Typography>
       </CardContent>
       <CardActions>

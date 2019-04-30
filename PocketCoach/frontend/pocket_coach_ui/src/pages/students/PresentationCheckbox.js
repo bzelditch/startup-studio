@@ -40,27 +40,8 @@ class PresentationCheckbox extends React.Component {
 
     return (
       <FormGroup row>
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={this.state.checkedA}
-              onChange={this.handleChange('checkedA')}
-              value="checkedA"
-            />
-          }
-          label="Sales Pitch"
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={this.state.checkedC}
-              onChange={this.handleChange('checkedC')}
-              value="checkedB"
-              color="primary"
-            />
-          }
-          label="Startup Pitch"
-        />
+        <FormControlLabel control={<Checkbox value="checkedC" />} label="Sales Pitch" />
+        <FormControlLabel control={<Checkbox value="checkedC" />} label="Startup Pitch" />
         <FormControlLabel control={<Checkbox value="checkedC" />} label="Company Presentation" />
         <FormControlLabel control={<Checkbox value="checkedC" />} label="Industry Speech" />
         <FormControlLabel control={<Checkbox value="checkedC" />} label="Interview Answer" />

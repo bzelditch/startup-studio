@@ -31,12 +31,36 @@ class FindCoachStepper extends React.Component {
 
   constructor(props){
     super(props);
+    this.presentationTypeHandler = this.presentationTypeHandler.bind(this);
+    this.goalHandler = this.goalHandler.bind(this);
+    this.responseTimeHandler = this.responseTimeHandler.bind(this);
   };
 
   state = {
     activeStep: 0,
     skipped: new Set(),
+    chosenPresentationTypes: [],
+    chosenGoals: [],
+    chosenResponseTimes: []
   };
+
+  presentationTypeHandler(type) {
+    this.setState({
+      chosenPresentationTypes: [...this.state.chosenPresentationTypes,type]
+    });
+  }
+
+  goalHandler(goal) {
+    this.setState({
+      chosenGoals: [...this.state.chosenGoals,goal]
+    });
+  }
+
+  responseTimeHandler(time) {
+    this.setState({
+      chosenResponseTimes: [...this.state.chosenResponseTimes,time]
+    });
+  }
 
   getStepContent(step) {
     switch (step) {
@@ -50,13 +74,16 @@ class FindCoachStepper extends React.Component {
         /*return 'Preferences & Goals';*/
         return (
           <div>
-            <FindCoachCard nextHandler={this.handleNext}/>
+            <FindCoachCard nextHandler={this.handleNext} 
+                presentationTypeHandler={this.presentationTypeHandler}
+                goalHandler={this.goalHandler} responseTimeHandler={this.responseTimeHandler}/>
           </div>
         );
       case 2:
         return (
           <div>
-            <MySessions/>
+            <MySessions chosenPresentationTypes={this.state.chosenPresentationTypes}
+              chosenGoals={this.state.chosenGoals} chosenResponseTimes={this.state.chosenResponseTimes}/>
           </div>
         );
       default:

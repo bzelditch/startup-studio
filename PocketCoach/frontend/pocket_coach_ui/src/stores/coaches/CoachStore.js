@@ -98,6 +98,27 @@ class CoachStore extends EventEmitter {
     return coachDetails;
   }
 
+  getCoachesBySpecialties(specialties) {
+    const matchingCoaches = this.coachDatabase.filter(c => this.intersect(c.specialties, specialties) > 1);
+    if (matchingCoaches.length === 0) return [];
+    return matchingCoaches.sort(function(c) {
+      return this.intersect(c.specialties, specialties).length / this.union(c.specialties, specialties).length;
+    });
+  }
+
+  union(a, b) {
+    if (a.length < 1) return b;
+    if (b.length < 1) return a;
+    return [...new Set([...a, ...b])];
+  }
+
+  intersect(a, b) {
+    if (a.length < 1 || b.length < 1) return [];
+    return a.filter(function(e) {
+      return b.indexOf(e) > -1;
+    });
+  }
+
 
   handleActions(action) {
     console.log("coach handleActions")

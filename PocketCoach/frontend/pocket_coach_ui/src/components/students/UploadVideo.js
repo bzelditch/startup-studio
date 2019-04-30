@@ -19,12 +19,12 @@ function getCurrentDatePlusDays(days) {
 class UploadVideo extends React.Component {
     constructor(props) {
         super(props);
-        console.log("Video Constructor");
         this.state = {
             userId : 1, /* Should be passed in some way...  */
             projectTitle: '',
             projectDesc: '',
             projectVideo: '',
+            projectVideoName: '',
             videoTitle: '',
             projectGoals: '',
         };
@@ -42,8 +42,10 @@ class UploadVideo extends React.Component {
 
     uploadVideoHandler = e => {
         this.setState({
-            projectVideo: e.target.files[0]
+            projectVideo: e.target.files[0],
+            projectVideoName: e.target.files[0].name
         });
+        console.log("Chose file " + e.target.files[0].name);
     }
 
     createVideoObj = () => {
@@ -76,6 +78,9 @@ class UploadVideo extends React.Component {
     }
 
     render() {
+        let fileSelectedDisplay = this.state.projectVideoName ? 
+                        (<div>{this.state.projectVideoName} </div>) : 
+                        (<div>Select Video...</div>);
         return (
             <Card>
             <CardHeader title="Create a Project"/>
@@ -97,7 +102,7 @@ class UploadVideo extends React.Component {
 
                 <br/>
 
-                <input type="file" style={{display:'none'}}
+                <input type="file" style={{display: 'none'}}
                 onChange={this.uploadVideoHandler} 
                 ref={fileInput => this.fileInput = fileInput}/>
 
@@ -105,6 +110,10 @@ class UploadVideo extends React.Component {
                 onClick={() => this.fileInput.click()}>
                 Upload a Video
                 </Button>
+
+                <div>
+                    {fileSelectedDisplay}
+                </div>
 
                 <br/>
 
