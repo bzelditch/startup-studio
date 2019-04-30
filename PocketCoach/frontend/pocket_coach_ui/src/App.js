@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
-import { Header } from './components';
 import {StudentProfileView, CoachProfileView, Homepage} from "./pages";
 import { MuiThemeProvider, createMuiTheme, creat } from '@material-ui/core/styles';
-// import createPalette from 'material-ui/styles/palette';
-// import createTypography from 'material-ui/styles/typography';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 let theme = createMuiTheme({
   palette: {
@@ -74,6 +72,7 @@ class App extends Component {
 
     return (
       <MuiThemeProvider theme={theme}>
+        <CssBaseline />
       <BrowserRouter>
         <div>
           <Switch>
@@ -81,6 +80,7 @@ class App extends Component {
             <Route path='/coach/:coachId' component={CoachProfileView} />
             <Route path='/' component={Homepage} />
           </Switch>
+
         </div>
       </BrowserRouter>
       </MuiThemeProvider>

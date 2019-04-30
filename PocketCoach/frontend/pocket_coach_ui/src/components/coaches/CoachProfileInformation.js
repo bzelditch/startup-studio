@@ -21,7 +21,7 @@ const styles = theme => ({
     backgroundColor: theme.palette.grey[200]
   },
   divider: {
-    marginTop: theme.spacing.unit,
+    marginTop: 1,
     marginBottom: theme.spacing.unit,
   }
 });
@@ -79,6 +79,7 @@ class CoachProfileInformation extends React.Component {
           </Grid>
           <Grid item xs={12}>
             <CardContent>
+              <br/>
               <Divider className={classes.divider}/>
               <Typography variant="h6">
                 Sample Videos
