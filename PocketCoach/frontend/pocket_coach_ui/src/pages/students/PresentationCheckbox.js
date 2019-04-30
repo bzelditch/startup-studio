@@ -35,16 +35,20 @@ class PresentationCheckbox extends React.Component {
     this.setState({ [name]: event.target.checked });
   };
 
+  addPresentationType = type => () => {
+    this.props.presentationTypeHandler(type);
+  };
+
   render() {
     const { classes } = this.props;
 
     return (
       <FormGroup row>
-        <FormControlLabel control={<Checkbox value="checkedC" />} label="Sales Pitch" />
-        <FormControlLabel control={<Checkbox value="checkedC" />} label="Startup Pitch" />
-        <FormControlLabel control={<Checkbox value="checkedC" />} label="Company Presentation" />
-        <FormControlLabel control={<Checkbox value="checkedC" />} label="Industry Speech" />
-        <FormControlLabel control={<Checkbox value="checkedC" />} label="Interview Answer" />
+        <FormControlLabel control={<Checkbox value="checkedC"/>} onChange={this.addPresentationType("Sales Pitch")} label="Sales Pitch" />
+    <FormControlLabel control={<Checkbox value="checkedC"/>} onChange={this.addPresentationType("Startup Pitch")} label="Startup Pitch" />
+        <FormControlLabel control={<Checkbox value="checkedC"/>} onChange={this.addPresentationType("Company Presentation")} label="Company Presentation" />
+    <FormControlLabel control={<Checkbox value="checkedC"/>} onChange={this.addPresentationType("Industry Speech")} label="Industry Speech" />
+    <FormControlLabel control={<Checkbox value="checkedC" />} onChange={this.addPresentationType("Interview Answer")} label="Interview Answer" />
       </FormGroup>
     );
   }

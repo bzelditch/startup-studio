@@ -45,21 +45,27 @@ class FindCoachStepper extends React.Component {
   };
 
   presentationTypeHandler(type) {
+    if (this.state.chosenPresentationTypes.indexOf(type) > -1) return;
     this.setState({
       chosenPresentationTypes: [...this.state.chosenPresentationTypes,type]
     });
+    console.log(this.state.chosenPresentationTypes);
   }
 
   goalHandler(goal) {
+    if (this.state.chosenGoals.indexOf(goal) > -1) return;
     this.setState({
       chosenGoals: [...this.state.chosenGoals,goal]
     });
+    console.log(this.state.chosenGoals);
   }
 
   responseTimeHandler(time) {
+    if (this.state.chosenResponseTimes.indexOf(time) > -1) return;
     this.setState({
       chosenResponseTimes: [...this.state.chosenResponseTimes,time]
     });
+    console.log(this.state.chosenResponseTimes);
   }
 
   getStepContent(step) {

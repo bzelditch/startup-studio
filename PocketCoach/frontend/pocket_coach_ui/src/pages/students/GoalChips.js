@@ -33,29 +33,29 @@ function GoalChips(props) {
   return (
     <div className={classes.root}>
       
-      <ToggleChip buttonLabel="Accent"/>
+      <ToggleChip buttonLabel="Accent" goalHandler={props.goalHandler}/>
 
-      <ToggleChip buttonLabel="Body Language"/>
+      <ToggleChip buttonLabel="Body Language" goalHandler={props.goalHandler}/>
 
-      <ToggleChip buttonLabel="Content"/>
+      <ToggleChip buttonLabel="Content" goalHandler={props.goalHandler}/>
 
-      <ToggleChip buttonLabel="Confidence"/>
+      <ToggleChip buttonLabel="Confidence" goalHandler={props.goalHandler}/>
 
-      <ToggleChip buttonLabel="Engagement"/>
+      <ToggleChip buttonLabel="Engagement" goalHandler={props.goalHandler}/>
 
-      <ToggleChip buttonLabel="Filler Words"/>
+      <ToggleChip buttonLabel="Filler Words" goalHandler={props.goalHandler}/>
 
-      <ToggleChip buttonLabel="Gestures"/>
+      <ToggleChip buttonLabel="Gestures" goalHandler={props.goalHandler}/>
 
-      <ToggleChip buttonLabel="Pacing"/>
+      <ToggleChip buttonLabel="Pacing" goalHandler={props.goalHandler}/>
 
-      <ToggleChip buttonLabel="Posture"/>
+      <ToggleChip buttonLabel="Posture" goalHandler={props.goalHandler}/>
 
-      <ToggleChip buttonLabel="Presence"/>
+      <ToggleChip buttonLabel="Presence" goalHandler={props.goalHandler}/>
 
-      <ToggleChip buttonLabel="Projection"/>
+      <ToggleChip buttonLabel="Projection"goalHandler={props.goalHandler}/>
       
-      <ToggleChip buttonLabel="Tone"/>
+      <ToggleChip buttonLabel="Tone" goalHandler={props.goalHandler}/>
     </div>
   );
 }

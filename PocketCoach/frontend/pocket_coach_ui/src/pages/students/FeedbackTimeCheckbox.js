@@ -32,34 +32,19 @@ class FeedbackTimeCheckbox extends React.Component {
     this.setState({ [name]: event.target.checked });
   };
 
+  addResponseTime = time => () => {
+    this.props.responseTimeHandler(time);
+  };
+
   render() {
     const { classes } = this.props;
 
     return (
       <FormGroup row>
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={this.state.checkedA}
-              onChange={this.handleChange('checkedA')}
-              value="checkedA"
-            />
-          }
-          label="24 Hours"
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={this.state.checkedC}
-              onChange={this.handleChange('checkedC')}
-              value="checkedB"
-              color="primary"
-            />
-          }
-          label="3 Days"
-        />
-        <FormControlLabel control={<Checkbox value="checkedC" />} label="1 Week" />
-        <FormControlLabel control={<Checkbox value="checkedC" />} label="2 Weeks" />
+        <FormControlLabel control={<Checkbox value="checkedC" />} onChange={this.addResponseTime("24 Hours")} label="24 Hours" />
+        <FormControlLabel control={<Checkbox value="checkedC" />} onChange={this.addResponseTime("3 Days")} label="3 Days" />
+        <FormControlLabel control={<Checkbox value="checkedC" />} onChange={this.addResponseTime("1 Week")} label="1 Week" />
+        <FormControlLabel control={<Checkbox value="checkedC" />} onChange={this.addResponseTime("2 Weeks")} label="2 Weeks" />
       </FormGroup>
     );
   }

@@ -43,7 +43,7 @@ class CoachStore extends EventEmitter {
         avatarColor: randomMaterialColor.getColor({text: "Julia Crenshaw"}),
         profileImage: require('../../static/images/coaches/JuliaCrenshaw.jpeg'),
 
-        specialties: ["Startup Pitches"],
+        specialties: ["Startup Pitch"],
         workExperience: ["BoxGroup", "Union Square Ventures"],
         responseTime: "24 Hours",
         videoLink: '02yv-Xf77SQ',
@@ -70,6 +70,8 @@ class CoachStore extends EventEmitter {
     ];
 
     this.nextCoachId = this.coachDatabase.length + 1;
+    this.union = this.union.bind(this);
+    this.intersect = this.intersect.bind(this);
   }
 
   getAll() {
@@ -98,12 +100,23 @@ class CoachStore extends EventEmitter {
     return coachDetails;
   }
 
-  getCoachesBySpecialties(specialties) {
-    const matchingCoaches = this.coachDatabase.filter(c => this.intersect(c.specialties, specialties) > 1);
+  getCoachesBySpecialties(types, goals, times) {
+    let specialties = types.concat(goals);
+    let matchingCoaches = this.coachDatabase.filter(c => times.indexOf(c.responseTime) > -1);
     if (matchingCoaches.length === 0) return [];
-    return matchingCoaches.sort(function(c) {
-      return this.intersect(c.specialties, specialties).length / this.union(c.specialties, specialties).length;
+    let union = this.union;
+    let intersect = this.intersect;
+    return matchingCoaches.sort(function(c1, c2) {
+      let j1 = intersect(c1.specialties,specialties).length/union(c1.specialties,specialties).length;
+      let j2 = intersect(c2.specialties,specialties).length/union(c2.specialties,specialties).length;
+      return j2-j1;
     });
+  }
+
+  jaccardSimilarity(l1, l2) {
+    let i = this.intersect(l1, l2).length;
+    let u = this.union(l1, l2).length;
+    return i/u ;
   }
 
   union(a, b) {
@@ -113,9 +126,13 @@ class CoachStore extends EventEmitter {
   }
 
   intersect(a, b) {
-    if (a.length < 1 || b.length < 1) return [];
+    /*if (a.length < 1 || b.length < 1) return [];*/
+    console.log("a: ");
+    console.log(a);
+    console.log("b: ");
+    console.log(b);
     return a.filter(function(e) {
-      return b.indexOf(e) > -1;
+      return (b.indexOf(e) > -1);
     });
   }
 

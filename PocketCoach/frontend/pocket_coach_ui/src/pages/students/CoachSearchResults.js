@@ -15,17 +15,17 @@ class CoachSearchResults extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      coaches: CoachStore.getAll(),
-    }
+      coaches: CoachStore.getCoachesBySpecialties(props.chosenPresentationTypes, props.chosenGoals, props.chosenResponseTimes),
+    };
   };
 
-  componentWillMount() {
+ /* componentWillMount() {
     CoachStore.on("change", () => {
       this.setState({
         coaches: CoachStore.getAll(),
       })
     })
-  }
+  }*/
 
   render() {
     const { coaches } = this.state;

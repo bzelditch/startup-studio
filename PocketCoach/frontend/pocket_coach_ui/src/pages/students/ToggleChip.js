@@ -46,6 +46,7 @@ class ToggleChip extends React.Component {
         this.setState({
             clicked: !this.state.clicked
         });
+        this.props.goalHandler(this.props.buttonLabel);
     }
 
     render() {
