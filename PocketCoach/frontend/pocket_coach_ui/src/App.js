@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
-import {  Footer } from './components';
 import {StudentProfileView, CoachProfileView, Homepage} from "./pages";
 import { MuiThemeProvider, createMuiTheme, creat } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
