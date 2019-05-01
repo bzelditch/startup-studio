@@ -43,7 +43,7 @@ class CoachStore extends EventEmitter {
         avatarColor: randomMaterialColor.getColor({text: "Julia Crenshaw"}),
         profileImage: require('../../static/images/coaches/JuliaCrenshaw.jpeg'),
 
-        specialties: ["Startup Pitch"],
+        specialties: ["Startup Pitch", "Confidence"],
         workExperience: ["BoxGroup", "Union Square Ventures"],
         responseTime: "24 Hours",
         videoLink: '02yv-Xf77SQ',
@@ -59,10 +59,122 @@ class CoachStore extends EventEmitter {
         avatarColor: randomMaterialColor.getColor({text: "Milton Hinton"}),
         profileImage: require('../../static/images/coaches/MiltonHinton.jpeg'),
 
-        specialties: ["Acting", "Delivery Skills"],
+        specialties: ["Body Language", "Filler Words"],
         workExperience: ["Harvard University"],
-        responseTime: "24 Hours",
+        responseTime: "3 Days",
         videoLink: 'fh28oGbPmr4',
+        rating: 4.76,
+
+        intro: "",
+      },
+      {
+        coachId: 4,
+        firstName: "Matilda",
+        lastName: "Langley",
+        createTimestamp: getCurrentDatePlusDays(-40),
+        avatarColor: randomMaterialColor.getColor({text: "Matilda Langley"}),
+        profileImage: require('../../static/images/coaches/MatildaLangley.jpeg'),
+
+        specialties: ["Company Presentation", "Posture", "Tone", "Industry Speech"],
+        workExperience: ["Proctor & Gamble"],
+        responseTime: "24 Hours",
+        videoLink: '3yfFwDq4R5M',
+        rating: 4.76,
+
+        intro: "",
+      },
+      {
+        coachId: 5,
+        firstName: "Hannah",
+        lastName: "Cornwall",
+        createTimestamp: getCurrentDatePlusDays(-40),
+        avatarColor: randomMaterialColor.getColor({text: "Hannah Cornwall"}),
+        profileImage: require('../../static/images/coaches/HannahCornwall.jpeg'),
+
+        specialties: ["Interview Answer", "Engagement", "Content"],
+        workExperience: ["Google", "Amazon"],
+        responseTime: "24 Hours",
+        videoLink: 'dvrRfEuXCBw',
+        rating: 4.76,
+
+        intro: "",
+      },
+      {
+        coachId: 6,
+        firstName: "Vanessa",
+        lastName: "Williams",
+        createTimestamp: getCurrentDatePlusDays(-40),
+        avatarColor: randomMaterialColor.getColor({text: "Vanessa Williams"}),
+        profileImage: require('../../static/images/coaches/VanessaWilliams.jpeg'),
+
+        specialties: ["Company Presentation", "Gestures", "Accent"],
+        workExperience: ["BlueCarts", "Pinterest"],
+        responseTime: "3 Days",
+        videoLink: '5sMeTEPUeq8',
+        rating: 4.76,
+
+        intro: "",
+      },
+      {
+        coachId: 7,
+        firstName: "Justin",
+        lastName: "Francis",
+        createTimestamp: getCurrentDatePlusDays(-40),
+        avatarColor: randomMaterialColor.getColor({text: "Justin Francis"}),
+        profileImage: require('../../static/images/coaches/JustinFrancis.jpeg'),
+
+        specialties: ["Startup Pitch", "Industry Speech", "Presence", "Posture"],
+        workExperience: ["Duolingo"],
+        responseTime: "24 Hours",
+        videoLink: 'dhpeqVroZYg',
+        rating: 4.76,
+
+        intro: "",
+      },
+      {
+        coachId: 8,
+        firstName: "Tim",
+        lastName: "Savage",
+        createTimestamp: getCurrentDatePlusDays(-40),
+        avatarColor: randomMaterialColor.getColor({text: "Tim Savage"}),
+        profileImage: require('../../static/images/coaches/TimSavage.jpeg'),
+
+        specialties: ["Company Presentation", "Pacing", "Projection"],
+        workExperience: ["Microsoft"],
+        responseTime: "24 Hours",
+        videoLink: 'lQdFDSjo1b4',
+        rating: 4.76,
+
+        intro: "",
+      },
+      {
+        coachId: 9,
+        firstName: "Bruce",
+        lastName: "Mars",
+        createTimestamp: getCurrentDatePlusDays(-40),
+        avatarColor: randomMaterialColor.getColor({text: "Bruce Mars"}),
+        profileImage: require('../../static/images/coaches/BruceMars.jpeg'),
+
+        specialties: ["Company Presentation", "Content", "Tone"],
+        workExperience: ["Bain & Co."],
+        responseTime: "24 Hours",
+        videoLink: 'JGSJykKJl3c',
+        rating: 4.76,
+
+        intro: "",
+      },
+      {
+        coachId: 10,
+        firstName: "Jerry",
+        lastName: "Edwards",
+        createTimestamp: getCurrentDatePlusDays(-40),
+        avatarColor: randomMaterialColor.getColor({text: "Jerry Edwards"}),
+        profileImage: require('../../static/images/coaches/JerryEdwards.jpeg'),
+
+        specialties: ["Sales Pitch", "Industry Speech", "Confidence", "Body Language"],
+        workExperience: ["Sequoia Capital", "Google"],
+        responseTime: "24 Hours",
+        videoLink: 'M35pBdMUCP8',
         rating: 4.76,
 
         intro: "",
