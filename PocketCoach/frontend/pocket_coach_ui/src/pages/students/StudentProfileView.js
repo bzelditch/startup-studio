@@ -4,6 +4,7 @@ import {StudentProfile, FindCoaches, StudentSessions} from "../";
 import { withStyles } from '@material-ui/core/styles';
 import {Paper, Tab, Tabs} from "@material-ui/core";
 import {Link, Route, Switch} from "react-router-dom";
+import CoachSessions from "../coaches/CoachSessions";
 
 const styles = theme => ({
   layout: {
@@ -35,10 +36,11 @@ class StudentProfileView extends Component {
     super(props);
     console.log("StudentProfileView")
     console.log(props)
+    const demoVideoId = 2;
     this.state = {
       tabs: [createTabObject("Profile",  props.match.url ),
         createTabObject("Find Coaches",  props.match.url+"/findcoaches"),
-        createTabObject("My Sessions",  props.match.url+"/sessions")],
+        createTabObject("My Sessions",  props.match.url+"/sessions/" +demoVideoId)],
     }
   };
 
@@ -67,7 +69,7 @@ class StudentProfileView extends Component {
         <div className={classes.appBarSpacer} />
         <Switch>
           <Route path="/student/:studentId/findcoaches" component={FindCoaches} />
-          <Route path="/student/:studentId/sessions" component={StudentSessions} />
+          <Route path="/student/:studentId/sessions/:videoId" component={StudentSessions} />
           <Route path="/student/:studentId" component={StudentProfile} />
         </Switch>
 

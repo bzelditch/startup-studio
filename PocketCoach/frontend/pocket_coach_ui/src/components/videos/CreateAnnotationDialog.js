@@ -39,8 +39,8 @@ class CreateAnnotationDialog extends Component {
 
   render() {
     const {curVideo, open, videoTimestamp} = this.state;
-    const {curCoach, classes} = this.props;
-
+    const {curCoach, curStudent, classes} = this.props;
+    console.log(this.props)
     return (
       <Fragment>
         <Dialog
@@ -63,6 +63,7 @@ class CreateAnnotationDialog extends Component {
           <br/>
           <DialogContent>
             <AnnotationForm curCoach={curCoach}
+                            curStudent={curStudent}
                             curVideo={curVideo}
                             videoTimestamp={videoTimestamp}
                             onSubmit={this.props.handleCreate}/>

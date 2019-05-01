@@ -21,17 +21,20 @@ const styles = theme => ({
   }
 });
 
+
 class AnnotationForm extends Component {
   constructor(props) {
     super(props);
     this.getVideoId = require('get-video-id');
-    this.state = {
+
+    this.state =
+      {
         selectedTab: 0,
         draftAnnotation: {
           commentId: null,
           videoId: props.curVideo.videoId,
-          studentId: null,
-          coachId: props.curCoach.coachId,
+          studentId: props.curStudent ? props.curStudent.studentId: null,
+          coachId: props.curCoach? props.curCoach.coachId:null,
           createTimestamp: null,
           updateTimestamp: null,
           videoTimestamp: this.props.videoTimestamp,
