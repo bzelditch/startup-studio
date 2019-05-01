@@ -62,7 +62,7 @@ function ProductHowItWorks(props) {
                 <div className={classes.number}>1.</div>
                 <VideocamOutlined className={classes.icon}/>
                 <Typography variant="h5" align="center">
-                  Upload video presentation.
+                  Upload your video presentation.
                 </Typography>
               </div>
             </Grid>

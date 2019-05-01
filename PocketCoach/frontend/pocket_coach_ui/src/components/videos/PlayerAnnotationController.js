@@ -103,11 +103,12 @@ class PlayerAnnotationController extends Component {
 
   render() {
     const {videoTimestamp,createAnnotationDialogOpen,completeFeedbackDialogOpen,comments, curVideo} = this.state;
-    const {curCoach, classes} = this.props;
+    const {curCoach, curStudent, classes} = this.props;
     return (
       <div>
         <CreateAnnotationDialog
           curCoach={curCoach}
+          curStudent={curStudent}
           curVideo={curVideo}
           open={createAnnotationDialogOpen}
           videoTimestamp={videoTimestamp}
@@ -184,6 +185,7 @@ class PlayerAnnotationController extends Component {
 
         <br/>
 
+        {curCoach?
         <Grid container xs={12} justify="flex-end" >
           <Grid item>
           <Button
@@ -194,6 +196,7 @@ class PlayerAnnotationController extends Component {
           </Button>
           </Grid>
         </Grid>
+          :null}
       </div>
     );
   }

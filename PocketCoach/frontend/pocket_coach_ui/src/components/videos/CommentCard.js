@@ -11,7 +11,7 @@ import {
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { withStyles } from '@material-ui/core/styles';
 import CoachStore from "../../stores/coaches/CoachStore";
-
+import StudentStore from "../../stores/students/StudentStore";
 
 const styles = theme => ({
   card: {
@@ -33,34 +33,37 @@ class CommentCard extends React.Component {
 
   render() {
     const {comment, classes} = this.props;
-    const commentCoachDetails = comment.coachId? CoachStore.getCoachDetailsById(comment.coachId): null;
-
+    const commentCoachDetails = comment.coachId? CoachStore.getCoachDetailsById(comment.coachId): StudentStore.getStudentDetailsById(comment.studentId);
     const break_after_comment = comment.text !== "" && comment.images !== [] || comment.text !== "" && comment.videos !== [];
     const break_after_images = comment.images !== [] && comment.videos !== [];
     return (
       <Card className={classes.card}>
-        <CardHeader
-          avatar={
-            CoachStore.getCoachAvatarById(comment.coachId)
-          }
-          action={(
-            <IconButton>
-              <MoreVertIcon />
-            </IconButton>
-          )}
-          title={commentCoachDetails.firstName + " " + commentCoachDetails.lastName}
-          subheader={
-            <Fragment>
-              <Typography color="textSecondary">
-                {comment.createTimestamp}
-              </Typography>
-              <Typography color="textSecondary">
-                Timestamp: {comment.videoTimestamp.toFixed(2)} s
-              </Typography>
-            </Fragment>
 
-          }
-        />
+          <CardHeader
+            avatar={
+              comment.coachId ?
+                CoachStore.getCoachAvatarById(comment.coachId)
+                :StudentStore.getAvatarById(comment.studentId)
+            }
+            action={(
+              <IconButton>
+                <MoreVertIcon/>
+              </IconButton>
+            )}
+            title={commentCoachDetails.firstName + " " + commentCoachDetails.lastName}
+            subheader={
+              <Fragment>
+                <Typography color="textSecondary">
+                  {comment.createTimestamp}
+                </Typography>
+                <Typography color="textSecondary">
+                  Timestamp: {comment.videoTimestamp.toFixed(2)} s
+                </Typography>
+              </Fragment>
+
+            }
+          />
+
 
         <CardContent>
         <Typography component="body1">
